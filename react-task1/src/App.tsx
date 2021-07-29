@@ -1,16 +1,18 @@
 import "./App.scss";
+import { CardsContainer } from "./components/cards-container/cards-container";
+import { SearchBar } from "./components/search-bar/searchBar";
 
 function App(): JSX.Element {
   return (
-    <div className="App">
-      <div className="App-header">
-        <img src="./favicon.ico" className="App-logo" alt="logo" />
-        <h2>Welcome to React</h2>
-      </div>
-      <p className="App-intro">
-        To get started, edit <code>src/App.tsx</code> and save to reload.
-      </p>
-    </div>
+    <>
+      <header className="App-header">
+        <h2>React.Component</h2>
+      </header>
+      <main className="App-main">
+        <SearchBar />
+        <CardsContainer />
+      </main>
+    </>
   );
 }
 

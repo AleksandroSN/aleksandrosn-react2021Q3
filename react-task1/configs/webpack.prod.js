@@ -5,11 +5,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { merge } = require('webpack-merge');
-const common = require('./webpack.common.js');
+const common = require('../webpack.common.js');
 
  module.exports = merge(common, {
    mode: 'production',
-   output: { path: path.join(__dirname, 'build'), filename: '[name].[chunkhash].js' },
+   output: { path: path.join(__dirname, '../build'), filename: '[name].[chunkhash].js' },
    plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({

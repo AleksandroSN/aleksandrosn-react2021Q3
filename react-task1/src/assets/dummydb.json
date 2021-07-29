@@ -1,0 +1,36 @@
+{
+  "cards": [
+    {
+      "word": "cry",
+      "translation": "плакать"
+    },
+    {
+      "word": "dance",
+      "translation": "танцевать"
+    },
+    {
+      "word": "dive",
+      "translation": "нырять"
+    },
+    {
+      "word": "draw",
+      "translation": "рисовать"
+    },
+    {
+      "word": "fish",
+      "translation": "ловить рыбу"
+    },
+    {
+      "word": "fly",
+      "translation": "летать"
+    },
+    {
+      "word": "hug",
+      "translation": "обнимать"
+    },
+    {
+      "word": "jump",
+      "translation": "прыгать"
+    }
+  ]
+}

@@ -1,1 +1,2 @@
-Repository for RSSchool at 2021Q3 React
+Task #1 . React.Components.
+link : https://github.com/rolling-scopes-school/tasks/blob/master/tasks/react/react-components.md
