@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { DummyMocks } from "../../api/dummydb";
 import { MocksData } from "../../api/interfaces";
 import { CardsMarkup } from "../cards/cards-markup";
+import "./cards-container.scss";
 
 export const CardsContainer = (): JSX.Element => {
   const [state, setstate] = useState<MocksData>();
@@ -14,7 +15,14 @@ export const CardsContainer = (): JSX.Element => {
   }, []);
 
   const cardsArr = state?.cards.map((card) => (
-    <CardsMarkup word={card.word} translation={card.translation} />
+    <CardsMarkup
+      key={card.pokemonName}
+      pokemonName={card.pokemonName}
+      pokemonNumber={card.pokemonNumber}
+      pokemonType={card.pokemonType}
+      pokemonImg={card.pokemonImg}
+      pokemonStats={card.pokemonStats}
+    />
   ));
 
   return (

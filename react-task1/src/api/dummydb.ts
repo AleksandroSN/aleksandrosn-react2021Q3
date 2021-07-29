@@ -2,7 +2,7 @@ import { MocksData } from "./interfaces";
 
 export const DummyMocks = async (): Promise<MocksData> => {
   try {
-    const response = await fetch("../assets/dummydb.json");
+    const response = await fetch("./dummydb.json");
     const json = (await response.json()) as MocksData;
     return json;
   } catch (e) {
