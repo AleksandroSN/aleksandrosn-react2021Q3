@@ -11,6 +11,6 @@ export interface PokemonStats {
   value: string;
 }
 
-export interface MocksData {
-  cards: PokemonData[];
-}
+// export interface MocksData {
+//   cards: PokemonData[];
+// }

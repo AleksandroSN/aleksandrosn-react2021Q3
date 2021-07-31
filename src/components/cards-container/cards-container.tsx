@@ -1,20 +1,27 @@
 import { useEffect, useState } from "react";
 import { DummyMocks } from "../../api/dummydb";
-import { MocksData } from "../../api/interfaces";
+import { PokemonData } from "../../api/interfaces";
 import { CardsMarkup } from "../cards/cards-markup";
+import { CreateForm } from "../forms/form";
 import "./cards-container.scss";
 
 export const CardsContainer = (): JSX.Element => {
-  const [state, setstate] = useState<MocksData>();
+  const [state, setState] = useState<PokemonData[]>([]);
 
   useEffect(() => {
     (async function getMocks() {
       const mocks = await DummyMocks();
-      setstate(mocks);
+      setState(mocks);
     })();
   }, []);
 
-  const cardsArr = state?.cards.map((card) => (
+  const updateCards = (modState: PokemonData) => {
+    setState((oldState) => [modState, ...oldState]);
+  };
+
+  console.log(state);
+
+  const cardsArr = state.map((card) => (
     <CardsMarkup
       key={card.pokemonName}
       pokemonName={card.pokemonName}
@@ -27,7 +34,10 @@ export const CardsContainer = (): JSX.Element => {
 
   return (
     <>
-      <div className="App-main__container">{cardsArr}</div>
+      <div className="App-main__container">
+        <CreateForm updateCards={updateCards} />
+        {cardsArr}
+      </div>
     </>
   );
 };

@@ -1,5 +1,4 @@
-{
-  "cards": [
+ [
     {
       "pokemonNumber": "#1",
       "pokemonName": "Bulbasaur",
@@ -169,4 +168,3 @@
       ]
     }
   ]
-}
