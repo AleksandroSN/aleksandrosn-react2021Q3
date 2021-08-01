@@ -1,20 +1,41 @@
 import { FormEvent, useRef, useState } from "react";
-import { PokemonData } from "../../api/interfaces";
+import { PokemonData, PokemonStats } from "../../api/interfaces";
+import { fullListSelects } from "../../utils/randomStats";
 import "./forms.scss";
+import { Select } from "./select/select";
 
 interface CreateFormProps {
   updateCards: (modState: PokemonData) => void;
 }
 
+const fullList = fullListSelects();
+
 export const CreateForm = ({ updateCards }: CreateFormProps): JSX.Element => {
   const nameRef = useRef<HTMLInputElement>(null);
   const numberRef = useRef<HTMLInputElement>(null);
   const [type, setType] = useState<string>("");
+  const [pokemonStats, setPokemonStats] = useState<PokemonStats[]>([]);
 
-  // TODO : 1. map select
-  //        2. create arr for stats
+  // TODO : 5. add key on map      
   //        3. validation
   //        4. remove any
+
+  const updatePokemonStats = (labelValue: string, value: string) => {
+    const newData = {
+      stat: labelValue,
+      value
+    }
+    const checkDupe = pokemonStats.findIndex(el => el.stat === labelValue);
+    if (checkDupe >= 0 ) {
+      setPokemonStats((old) => [...old!.slice(0, checkDupe),newData, ...old!.slice(checkDupe + 1)]);
+    } else {
+      setPokemonStats((old) => [...old,newData]);
+    }
+  }
+  
+  const stats = fullList.map(({attrName,labelValue,randomValue}) => {
+    return <Select labelValue={labelValue} attrName={attrName} randomValue={randomValue} updatePokemonStats={updatePokemonStats}/>
+  })
 
   const onSubmit = (ev: FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
@@ -23,16 +44,10 @@ export const CreateForm = ({ updateCards }: CreateFormProps): JSX.Element => {
       pokemonName: nameRef.current?.value as string,
       pokemonImg: "./img/12.png",
       pokemonType: type,
-      pokemonStats: [
-        { stat: "HP", value: "45" },
-        { stat: "ATK", value: "49" },
-        { stat: "DEF", value: "49" },
-        { stat: "SPD", value: "45" },
-        { stat: "SP.ATK", value: "65" },
-        { stat: "SP.DEF", value: "65" },
-      ],
+      pokemonStats,
     };
     updateCards(testData);
+    setPokemonStats([]);
   };
 
   return (
@@ -73,101 +88,7 @@ export const CreateForm = ({ updateCards }: CreateFormProps): JSX.Element => {
         </label>
       </div>
       <div className="App-main__container-form__select-area">
-        <label htmlFor="pokemonHP">
-          HP
-          <select
-            name="pokemonHP"
-            id="pokemonHP"
-            className="App-main__container-form__options"
-          >
-            <option value="34">34</option>
-            <option value="11">11</option>
-            <option value="75">75</option>
-            <option value="88">88</option>
-            <option value="15">15</option>
-            <option value="64">64</option>
-          </select>
-        </label>
-
-        <label htmlFor="pokemonATK">
-          ATK
-          <select
-            name="pokemonATK"
-            id="pokemonATK"
-            className="App-main__container-form__options"
-          >
-            <option value="34">34</option>
-            <option value="11">11</option>
-            <option value="75">75</option>
-            <option value="88">88</option>
-            <option value="15">15</option>
-            <option value="64">64</option>
-          </select>
-        </label>
-
-        <label htmlFor="pokemonDEF">
-          DEF
-          <select
-            name="pokemonDEF"
-            id="pokemonDEF"
-            className="App-main__container-form__options"
-          >
-            <option value="34">34</option>
-            <option value="11">11</option>
-            <option value="75">75</option>
-            <option value="88">88</option>
-            <option value="15">15</option>
-            <option value="64">64</option>
-          </select>
-        </label>
-
-        <label htmlFor="pokemonSPD">
-          SPD
-          <select
-            name="pokemonSPD"
-            id="pokemonSPD"
-            className="App-main__container-form__options"
-          >
-            <option value="34">34</option>
-            <option value="11">11</option>
-            <option value="75">75</option>
-            <option value="88">88</option>
-            <option value="15">15</option>
-            <option value="64">64</option>
-          </select>
-        </label>
-
-        <label htmlFor="pokemonSPATK">
-          SP.ATK
-          <select
-            name="pokemonSPATK"
-            id="pokemonSPATK"
-            className="App-main__container-form__options"
-          >
-            <option value="34">34</option>
-            <option value="11">11</option>
-            <option value="75">75</option>
-            <option value="88">88</option>
-            <option value="15">15</option>
-            <option value="64">64</option>
-          </select>
-        </label>
-
-        <label htmlFor="pokemonSPDEF">
-          SP.DEF
-          <select
-            name="pokemonSPDEF"
-            id="pokemonSPDEF"
-            className="App-main__container-form__options"
-          >
-            <option value="34">34</option>
-            <option value="11">11</option>
-            <option value="75">75</option>
-            <option value="88">88</option>
-            <option value="15">15</option>
-            <option value="64">64</option>
-          </select>
-        </label>
+        {stats}
       </div>
       <div className="App-main__container-form__checkbox-area">
         <input
@@ -198,7 +119,7 @@ export const CreateForm = ({ updateCards }: CreateFormProps): JSX.Element => {
       <div>
         <label htmlFor="pokemonAgree">
           Do you agree to create a pokemon
-          <input type="checkbox" name="pokemonAgree" id="pokemonAgree" />
+          <input type="checkbox" name="pokemonAgree" id="pokemonAgree" required/>
         </label>
       </div>
       <button type="submit">Create</button>

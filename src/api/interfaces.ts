@@ -14,3 +14,9 @@ export interface PokemonStats {
 // export interface MocksData {
 //   cards: PokemonData[];
 // }
+
+export interface FullListData {
+  randomValue: number[];
+  labelValue: string;
+  attrName: string;
+}
