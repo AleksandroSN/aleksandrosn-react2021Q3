@@ -11,8 +11,8 @@ export const fullListSelects = (): FullListData[] => {
   const copy = [...listSelects];
   const fullList = copy.map((item) => {
     const randomValue = randomStats();
-    return {...item,randomValue};
-  })
+    return { ...item, randomValue };
+  });
 
   return fullList;
-}
+};

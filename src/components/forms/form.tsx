@@ -1,6 +1,8 @@
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useReducer } from "react";
 import { PokemonData, PokemonStats } from "../../api/interfaces";
 import { fullListSelects } from "../../utils/randomStats";
+import { validateField } from "../../utils/validateField";
+import { formReducer, FORM_ACTIONS, initialFormState } from "./formReducer";
 import "./forms.scss";
 import { Select } from "./select/select";
 
@@ -8,46 +10,134 @@ interface CreateFormProps {
   updateCards: (modState: PokemonData) => void;
 }
 
+const LAST_NUMBER = 12;
+const MAX_COUNT_STATS = 5;
 const fullList = fullListSelects();
 
 export const CreateForm = ({ updateCards }: CreateFormProps): JSX.Element => {
-  const nameRef = useRef<HTMLInputElement>(null);
-  const numberRef = useRef<HTMLInputElement>(null);
-  const [type, setType] = useState<string>("");
-  const [pokemonStats, setPokemonStats] = useState<PokemonStats[]>([]);
+  const [state, dispatch] = useReducer(formReducer, initialFormState);
 
-  // TODO : 5. add key on map      
-  //        3. validation
-  //        4. remove any
+  console.log(state);
+
+  const updateName = (inputvalue: string) => {
+    const nameValid = validateField(/^\p{Letter}{1,30}$/iu, inputvalue);
+    dispatch({
+      type: FORM_ACTIONS.SET_NAME,
+      payload: {
+        pokemonName: inputvalue,
+        errors: { ...state.errors, nameValid },
+      },
+    });
+  };
+
+  const updateNumber = (inputvalue: string) => {
+    const numberValid = Number(inputvalue) > LAST_NUMBER;
+    dispatch({
+      type: FORM_ACTIONS.SET_NUMBER,
+      payload: {
+        pokemonNumber: inputvalue,
+        errors: { ...state.errors, numberValid },
+      },
+    });
+  };
+
+  const updateType = (inputvalue: string) => {
+    const typeValid = inputvalue !== undefined;
+    dispatch({
+      type: FORM_ACTIONS.SET_TYPE,
+      payload: {
+        pokemonType: inputvalue,
+        errors: { ...state.errors, typeValid },
+      },
+    });
+  };
+
+  const updateDate = (inputvalue: string) => {
+    const dateValid = inputvalue !== "";
+    dispatch({
+      type: FORM_ACTIONS.SET_DATE,
+      payload: {
+        pokemonDate: inputvalue,
+        errors: { ...state.errors, dateValid },
+      },
+    });
+  };
+
+  const updateAgreement = (inputvalue: boolean) => {
+    dispatch({
+      type: FORM_ACTIONS.SET_AGREE,
+      payload: {
+        agreement: inputvalue,
+        errors: { ...state.errors, agreement: inputvalue },
+      },
+    });
+  };
 
   const updatePokemonStats = (labelValue: string, value: string) => {
-    const newData = {
+    const statsValid =
+      state.pokemonStats.length > MAX_COUNT_STATS ||
+      state.pokemonStats.length === MAX_COUNT_STATS;
+    const newData: PokemonStats = {
       stat: labelValue,
-      value
-    }
-    const checkDupe = pokemonStats.findIndex(el => el.stat === labelValue);
-    if (checkDupe >= 0 ) {
-      setPokemonStats((old) => [...old!.slice(0, checkDupe),newData, ...old!.slice(checkDupe + 1)]);
+      value,
+    };
+    const checkDupe = state.pokemonStats.findIndex(
+      (el) => el.stat === labelValue
+    );
+    if (checkDupe >= 0) {
+      dispatch({
+        type: FORM_ACTIONS.SET_STATS,
+        payload: {
+          pokemonStats: [
+            ...state.pokemonStats.slice(0, checkDupe),
+            newData,
+            ...state.pokemonStats.slice(checkDupe + 1),
+          ],
+          errors: { ...state.errors, statsValid },
+        },
+      });
     } else {
-      setPokemonStats((old) => [...old,newData]);
+      dispatch({
+        type: FORM_ACTIONS.SET_STATS,
+        payload: {
+          pokemonStats: [...state.pokemonStats, newData],
+          errors: { ...state.errors, statsValid },
+        },
+      });
     }
-  }
-  
-  const stats = fullList.map(({attrName,labelValue,randomValue}) => {
-    return <Select labelValue={labelValue} attrName={attrName} randomValue={randomValue} updatePokemonStats={updatePokemonStats}/>
-  })
+  };
+
+  const stats = fullList.map(({ attrName, labelValue, randomValue }) => {
+    return (
+      <Select
+        key={labelValue}
+        labelValue={labelValue}
+        attrName={attrName}
+        randomValue={randomValue}
+        updatePokemonStats={updatePokemonStats}
+      />
+    );
+  });
 
   const onSubmit = (ev: FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
-    const testData = {
-      pokemonNumber: `#${numberRef.current?.value}`,
-      pokemonName: nameRef.current?.value as string,
+    const form = ev.target as HTMLFormElement;
+    form.reset();
+    const newCard = {
+      pokemonNumber: `#${state.pokemonNumber}`,
+      pokemonName: state.pokemonName,
       pokemonImg: "./img/12.png",
-      pokemonType: type,
-      pokemonStats,
+      pokemonType: state.pokemonType,
+      pokemonStats: state.pokemonStats,
     };
-    updateCards(testData);
-    setPokemonStats([]);
+    updateCards(newCard);
+    dispatch({
+      type: FORM_ACTIONS.RESET,
+    });
+  };
+
+  const checkValid = () => {
+    return Object.values(state.errors).every((x) => x === true);
   };
 
   return (
@@ -60,8 +150,13 @@ export const CreateForm = ({ updateCards }: CreateFormProps): JSX.Element => {
             type="text"
             placeholder="Name"
             id="pokemonName"
-            className="App-main__container-form__input"
-            ref={nameRef}
+            name="pokemonName"
+            className={
+              state.errors.nameValid
+                ? "App-main__container-form__input"
+                : "App-main__container-form__input invalid"
+            }
+            onChange={(ev) => updateName(ev.target.value)}
           />
         </label>
       </div>
@@ -70,10 +165,16 @@ export const CreateForm = ({ updateCards }: CreateFormProps): JSX.Element => {
           Pokemon number :
           <input
             type="number"
+            min="12"
             placeholder="Number..."
             id="pokemonNumber"
-            className="App-main__container-form__input"
-            ref={numberRef}
+            name="pokemonNumber"
+            className={
+              state.errors.numberValid
+                ? "App-main__container-form__input"
+                : "App-main__container-form__input invalid"
+            }
+            onChange={(ev) => updateNumber(ev.target.value)}
           />
         </label>
       </div>
@@ -83,20 +184,24 @@ export const CreateForm = ({ updateCards }: CreateFormProps): JSX.Element => {
           <input
             type="date"
             id="pokemonDate"
-            className="App-main__container-form__input"
+            name="pokemonDate"
+            className={
+              state.errors.dateValid
+                ? "App-main__container-form__input"
+                : "App-main__container-form__input invalid"
+            }
+            onChange={(ev) => updateDate(ev.target.value)}
           />
         </label>
       </div>
-      <div className="App-main__container-form__select-area">
-        {stats}
-      </div>
+      <div className="App-main__container-form__select-area">{stats}</div>
       <div className="App-main__container-form__checkbox-area">
         <input
           type="radio"
           name="pokemonType"
           id="pokemonType"
           value="Grass"
-          onClick={(e: any) => setType(e.target.value)}
+          onChange={(ev) => updateType(ev.target.value)}
         />
         <label htmlFor="pokemonType">Grass</label>
         <input
@@ -104,7 +209,7 @@ export const CreateForm = ({ updateCards }: CreateFormProps): JSX.Element => {
           name="pokemonType"
           id="pokemonType2"
           value="Fire"
-          onClick={(e: any) => setType(e.target.value)}
+          onChange={(ev) => updateType(ev.target.value)}
         />
         <label htmlFor="pokemonType2">Fire</label>
         <input
@@ -112,17 +217,25 @@ export const CreateForm = ({ updateCards }: CreateFormProps): JSX.Element => {
           name="pokemonType"
           id="pokemonType3"
           value="Water"
-          onClick={(e: any) => setType(e.target.value)}
+          onChange={(ev) => updateType(ev.target.value)}
         />
         <label htmlFor="pokemonType3">Water</label>
       </div>
       <div>
         <label htmlFor="pokemonAgree">
           Do you agree to create a pokemon
-          <input type="checkbox" name="pokemonAgree" id="pokemonAgree" required/>
+          <input
+            type="checkbox"
+            name="pokemonAgree"
+            id="pokemonAgree"
+            required
+            onClick={(ev) => updateAgreement(ev.currentTarget.checked)}
+          />
         </label>
       </div>
-      <button type="submit">Create</button>
+      <button type="submit" disabled={!checkValid()}>
+        Create
+      </button>
     </form>
   );
 };
