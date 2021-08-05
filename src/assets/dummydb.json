@@ -1,0 +1,172 @@
+{
+  "cards": [
+    {
+      "pokemonNumber": "#1",
+      "pokemonName": "Bulbasaur",
+      "pokemonImg": "./img/1.png",
+      "pokemonType": "Grass",
+      "pokemonStats": [
+        {"stat": "HP", "value": "45"},
+        {"stat": "ATK", "value": "49"},
+        {"stat": "DEF", "value": "49"},
+        {"stat": "SPD", "value": "45"},
+        {"stat": "SP.ATK", "value": "65"},
+        {"stat": "SP.DEF", "value": "65"}
+      ]
+    },
+    {
+      "pokemonNumber": "#2",
+      "pokemonName": "Ivysaur",
+      "pokemonImg": "./img/2.png",
+      "pokemonType": "Grass",
+      "pokemonStats": [
+        {"stat": "HP", "value": "60"},
+        {"stat": "ATK", "value": "62"},
+        {"stat": "DEF", "value": "63"},
+        {"stat": "SPD", "value": "60"},
+        {"stat": "SP.ATK", "value": "80"},
+        {"stat": "SP.DEF", "value": "80"}
+      ]
+    },
+    {
+      "pokemonNumber": "#3",
+      "pokemonName": "Venusaur",
+      "pokemonImg": "./img/3.png",
+      "pokemonType": "Grass",
+      "pokemonStats": [
+        {"stat": "HP", "value": "80"},
+        {"stat": "ATK", "value": "82"},
+        {"stat": "DEF", "value": "83"},
+        {"stat": "SPD", "value": "80"},
+        {"stat": "SP.ATK", "value": "100"},
+        {"stat": "SP.DEF", "value": "100"}
+      ]
+    },
+    {
+      "pokemonNumber": "#4",
+      "pokemonName": "Charmander",
+      "pokemonImg": "./img/4.png",
+      "pokemonType": "Fire",
+      "pokemonStats": [
+        {"stat": "HP", "value": "39"},
+        {"stat": "ATK", "value": "52"},
+        {"stat": "DEF", "value": "43"},
+        {"stat": "SPD", "value": "65"},
+        {"stat": "SP.ATK", "value": "60"},
+        {"stat": "SP.DEF", "value": "50"}
+      ]
+    },
+    {
+      "pokemonNumber": "#5",
+      "pokemonName": "Charmeleon",
+      "pokemonImg": "./img/5.png",
+      "pokemonType": "Fire",
+      "pokemonStats": [
+        {"stat": "HP", "value": "58"},
+        {"stat": "ATK", "value": "64"},
+        {"stat": "DEF", "value": "58"},
+        {"stat": "SPD", "value": "80"},
+        {"stat": "SP.ATK", "value": "20"},
+        {"stat": "SP.DEF", "value": "65"}
+      ]
+    },
+    {
+      "pokemonNumber": "#6",
+      "pokemonName": "Charizard",
+      "pokemonImg": "./img/6.png",
+      "pokemonType": "Fire",
+      "pokemonStats": [
+        {"stat": "HP", "value": "78"},
+        {"stat": "ATK", "value": "84"},
+        {"stat": "DEF", "value": "78"},
+        {"stat": "SPD", "value": "100"},
+        {"stat": "SP.ATK", "value": "109"},
+        {"stat": "SP.DEF", "value": "85"}
+      ]
+    },
+    {
+      "pokemonNumber": "#7",
+      "pokemonName": "Squirtle",
+      "pokemonImg": "./img/7.png",
+      "pokemonType": "Water",
+      "pokemonStats": [
+        {"stat": "HP", "value": "44"},
+        {"stat": "ATK", "value": "48"},
+        {"stat": "DEF", "value": "65"},
+        {"stat": "SPD", "value": "43"},
+        {"stat": "SP.ATK", "value": "50"},
+        {"stat": "SP.DEF", "value": "64"}
+      ]
+    },
+    {
+      "pokemonNumber": "#8",
+      "pokemonName": "Wartortle",
+      "pokemonImg": "./img/8.png",
+      "pokemonType": "Water",
+      "pokemonStats": [
+        {"stat": "HP", "value": "59"},
+        {"stat": "ATK", "value": "63"},
+        {"stat": "DEF", "value": "80"},
+        {"stat": "SPD", "value": "58"},
+        {"stat": "SP.ATK", "value": "65"},
+        {"stat": "SP.DEF", "value": "80"}
+      ]
+    },
+    {
+      "pokemonNumber": "#9",
+      "pokemonName": "Blastoise",
+      "pokemonImg": "./img/9.png",
+      "pokemonType": "Water",
+      "pokemonStats": [
+        {"stat": "HP", "value": "79"},
+        {"stat": "ATK", "value": "83"},
+        {"stat": "DEF", "value": "100"},
+        {"stat": "SPD", "value": "78"},
+        {"stat": "SP.ATK", "value": "85"},
+        {"stat": "SP.DEF", "value": "105"}
+      ]
+    },
+    {
+      "pokemonNumber": "#10",
+      "pokemonName": "Caterpie",
+      "pokemonImg": "./img/10.png",
+      "pokemonType": "Bug",
+      "pokemonStats": [
+        {"stat": "HP", "value": "45"},
+        {"stat": "ATK", "value": "30"},
+        {"stat": "DEF", "value": "35"},
+        {"stat": "SPD", "value": "45"},
+        {"stat": "SP.ATK", "value": "20"},
+        {"stat": "SP.DEF", "value": "20"}
+      ]
+    },
+    {
+      "pokemonNumber": "#11",
+      "pokemonName": "Metapod",
+      "pokemonImg": "./img/11.png",
+      "pokemonType": "Bug",
+      "pokemonStats": [
+        {"stat": "HP", "value": "50"},
+        {"stat": "ATK", "value": "20"},
+        {"stat": "DEF", "value": "55"},
+        {"stat": "SPD", "value": "30"},
+        {"stat": "SP.ATK", "value": "25"},
+        {"stat": "SP.DEF", "value": "25"}
+      ]
+    },
+    {
+      "pokemonNumber": "#12",
+      "pokemonName": "Butterfree",
+      "pokemonImg": "./img/12.png",
+      "pokemonType": "Bug",
+      "pokemonStats": [
+        {"stat": "HP", "value": "60"},
+        {"stat": "ATK", "value": "45"},
+        {"stat": "DEF", "value": "50"},
+        {"stat": "SPD", "value": "70"},
+        {"stat": "SP.ATK", "value": "90"},
+        {"stat": "SP.DEF", "value": "80"}
+      ]
+    }
+  ]
+}
