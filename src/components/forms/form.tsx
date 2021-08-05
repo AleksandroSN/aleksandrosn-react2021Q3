@@ -1,9 +1,13 @@
 import { FormEvent, useReducer } from "react";
 import { PokemonData, PokemonStats } from "../../api/interfaces";
+import { listFormInputs } from "../../utils/listInputs";
+import { listRadioButtons } from "../../utils/listRadioB";
 import { fullListSelects } from "../../utils/randomStats";
 import { validateField } from "../../utils/validateField";
 import { formReducer, FORM_ACTIONS, initialFormState } from "./formReducer";
 import "./forms.scss";
+import { Input } from "./inputs/input";
+import { RadioButton } from "./radio/radio";
 import { Select } from "./select/select";
 
 interface CreateFormProps {
@@ -107,6 +111,30 @@ export const CreateForm = ({ updateCards }: CreateFormProps): JSX.Element => {
     }
   };
 
+  let tempHandler: (inputvalue: string) => void;
+  const mainInputs = listFormInputs.map(
+    ({ label, type, placeholder, atrrValue, nameClass }) => {
+      if (type === "text") {
+        tempHandler = updateName;
+      } else if (type === "number") {
+        tempHandler = updateNumber;
+      } else if (type === "date") {
+        tempHandler = updateDate;
+      }
+      return (
+        <Input
+          label={label}
+          type={type}
+          placeholder={placeholder}
+          atrrValue={atrrValue}
+          nameClass={nameClass}
+          state={state}
+          updateValue={tempHandler}
+        />
+      );
+    }
+  );
+
   const stats = fullList.map(({ attrName, labelValue, randomValue }) => {
     return (
       <Select
@@ -116,6 +144,12 @@ export const CreateForm = ({ updateCards }: CreateFormProps): JSX.Element => {
         randomValue={randomValue}
         updatePokemonStats={updatePokemonStats}
       />
+    );
+  });
+
+  const radioButtons = listRadioButtons.map(({ name, id, label }) => {
+    return (
+      <RadioButton name={name} id={id} label={label} updateType={updateType} />
     );
   });
 
@@ -143,83 +177,10 @@ export const CreateForm = ({ updateCards }: CreateFormProps): JSX.Element => {
   return (
     <form className="App-main__container-form" onSubmit={(ev) => onSubmit(ev)}>
       <h2>Create Pokemon</h2>
-      <div>
-        <label htmlFor="pokemonName">
-          Pokemon name :
-          <input
-            type="text"
-            placeholder="Name"
-            id="pokemonName"
-            name="pokemonName"
-            className={
-              state.errors.nameValid
-                ? "App-main__container-form__input"
-                : "App-main__container-form__input invalid"
-            }
-            onChange={(ev) => updateName(ev.target.value)}
-          />
-        </label>
-      </div>
-      <div>
-        <label htmlFor="pokemonNumber">
-          Pokemon number :
-          <input
-            type="number"
-            min="12"
-            placeholder="Number..."
-            id="pokemonNumber"
-            name="pokemonNumber"
-            className={
-              state.errors.numberValid
-                ? "App-main__container-form__input"
-                : "App-main__container-form__input invalid"
-            }
-            onChange={(ev) => updateNumber(ev.target.value)}
-          />
-        </label>
-      </div>
-      <div>
-        <label htmlFor="pokemonDate">
-          Born date pokemon :
-          <input
-            type="date"
-            id="pokemonDate"
-            name="pokemonDate"
-            className={
-              state.errors.dateValid
-                ? "App-main__container-form__input"
-                : "App-main__container-form__input invalid"
-            }
-            onChange={(ev) => updateDate(ev.target.value)}
-          />
-        </label>
-      </div>
+      {mainInputs}
       <div className="App-main__container-form__select-area">{stats}</div>
       <div className="App-main__container-form__checkbox-area">
-        <input
-          type="radio"
-          name="pokemonType"
-          id="pokemonType"
-          value="Grass"
-          onChange={(ev) => updateType(ev.target.value)}
-        />
-        <label htmlFor="pokemonType">Grass</label>
-        <input
-          type="radio"
-          name="pokemonType"
-          id="pokemonType2"
-          value="Fire"
-          onChange={(ev) => updateType(ev.target.value)}
-        />
-        <label htmlFor="pokemonType2">Fire</label>
-        <input
-          type="radio"
-          name="pokemonType"
-          id="pokemonType3"
-          value="Water"
-          onChange={(ev) => updateType(ev.target.value)}
-        />
-        <label htmlFor="pokemonType3">Water</label>
+        {radioButtons}
       </div>
       <div>
         <label htmlFor="pokemonAgree">
