@@ -1,4 +1,4 @@
-import { InputStringProps } from "../components/forms/inputs/input";
+import { InputStringProps } from "../components/forms/interfaceAndTypesForms";
 
 export const listFormInputs: InputStringProps[] = [
   {
@@ -7,6 +7,7 @@ export const listFormInputs: InputStringProps[] = [
     placeholder: "Name",
     atrrValue: "pokemonName",
     nameClass: "App-main__container-form__input",
+    errorValue: "nameValid",
   },
   {
     label: "Pokemon number :",
@@ -14,6 +15,7 @@ export const listFormInputs: InputStringProps[] = [
     placeholder: "Number...",
     atrrValue: "pokemonNumber",
     nameClass: "App-main__container-form__input",
+    errorValue: "numberValid",
   },
   {
     label: "Born date pokemon :",
@@ -21,5 +23,6 @@ export const listFormInputs: InputStringProps[] = [
     placeholder: "",
     atrrValue: "pokemonDate",
     nameClass: "App-main__container-form__input",
+    errorValue: "dateValid",
   },
 ];

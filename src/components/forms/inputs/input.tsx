@@ -1,15 +1,5 @@
 import { FormState } from "../formReducer";
-
-export interface InputStringProps {
-  label: string;
-  type: string;
-  placeholder: string;
-  atrrValue: string;
-  nameClass: string;
-  updateName?: (inputvalue: string) => void;
-  updateNumber?: (inputvalue: string) => void;
-  updateDate?: (inputvalue: string) => void;
-}
+import { InputStringProps } from "../interfaceAndTypesForms";
 
 interface InputProps {
   state: FormState;
@@ -23,6 +13,7 @@ export const Input = ({
   atrrValue,
   state,
   nameClass,
+  errorValue,
   updateValue,
 }: InputProps & InputStringProps): JSX.Element => {
   return (
@@ -35,7 +26,9 @@ export const Input = ({
           id={atrrValue}
           name={atrrValue}
           className={
-            state.errors.nameValid ? `${nameClass}` : `${nameClass} invalid`
+            state.errors[`${errorValue}`]
+              ? `${nameClass}`
+              : `${nameClass} invalid`
           }
           onChange={(ev) => updateValue(ev.target.value)}
         />
