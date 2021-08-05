@@ -1,5 +1,6 @@
 .App-main__container-form {
   display: flex;
+  align-items: center;
   flex-direction: column;
   gap: 15px;
   border: 2px solid darkseagreen;
@@ -11,11 +12,25 @@
     margin-left: 15px;
     color: #333;
     height: 34px;
+    width: 90%;
     background-color: #f2f2f2;
     padding: 0 50px 0 12px;
     border-radius: 8px;
     border-style: none;
     outline: none;
+
+    &-wrapper {
+      width: 100%;
+      text-align: center;
+    }
+
+    &-name {
+      margin-bottom: 10px;
+    }
+
+    &-span {
+      color: #ff0000;
+    }
 
     &.invalid {
       border: 2px solid red;
@@ -23,10 +38,16 @@
   }
 
   &__select-area {
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     row-gap: 10px;
     justify-items: center;
+
+    &--invalid {
+      grid-column: 1/4;
+      color: #ff0000;
+    }
   }
 
   &__options {
@@ -61,4 +82,11 @@
       background-color: gold;
     }
   }
+}
+
+#pokemonAgree {
+  margin-left: 1rem;
+  width: 20px;
+  height: 20px;
+  vertical-align: bottom;
 }

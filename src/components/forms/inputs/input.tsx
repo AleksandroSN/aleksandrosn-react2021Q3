@@ -14,12 +14,20 @@ export const Input = ({
   state,
   nameClass,
   errorValue,
+  errorMesage,
   updateValue,
 }: InputProps & InputStringProps): JSX.Element => {
   return (
-    <div>
+    <div className="App-main__container-form__input-wrapper">
       <label htmlFor={atrrValue}>
-        {label}
+        <p className="App-main__container-form__input-name">
+          {label}{" "}
+          {!state.errors[`${errorValue}`] && (
+            <span className="App-main__container-form__input-span">
+              {errorMesage}
+            </span>
+          )}
+        </p>
         <input
           type={type}
           placeholder={placeholder}

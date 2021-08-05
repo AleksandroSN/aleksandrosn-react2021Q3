@@ -8,6 +8,7 @@ export const listFormInputs: InputStringProps[] = [
     atrrValue: "pokemonName",
     nameClass: "App-main__container-form__input",
     errorValue: "nameValid",
+    errorMesage: "Please enter text only",
   },
   {
     label: "Pokemon number :",
@@ -16,6 +17,7 @@ export const listFormInputs: InputStringProps[] = [
     atrrValue: "pokemonNumber",
     nameClass: "App-main__container-form__input",
     errorValue: "numberValid",
+    errorMesage: "Please enter number > 12",
   },
   {
     label: "Born date pokemon :",
@@ -24,5 +26,6 @@ export const listFormInputs: InputStringProps[] = [
     atrrValue: "pokemonDate",
     nameClass: "App-main__container-form__input",
     errorValue: "dateValid",
+    errorMesage: "Please enter full Date",
   },
 ];

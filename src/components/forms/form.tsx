@@ -25,7 +25,15 @@ export const CreateForm = ({ updateCards }: CreateFormProps): JSX.Element => {
   } = FormReducerHelper();
 
   const mainInputs = listFormInputs.map(
-    ({ label, type, placeholder, atrrValue, nameClass, errorValue }) => {
+    ({
+      label,
+      type,
+      placeholder,
+      atrrValue,
+      nameClass,
+      errorValue,
+      errorMesage,
+    }) => {
       return (
         <Input
           label={label}
@@ -34,6 +42,7 @@ export const CreateForm = ({ updateCards }: CreateFormProps): JSX.Element => {
           atrrValue={atrrValue}
           nameClass={nameClass}
           errorValue={errorValue}
+          errorMesage={errorMesage}
           state={state}
           updateValue={inputsCB[type]}
         />
@@ -80,9 +89,16 @@ export const CreateForm = ({ updateCards }: CreateFormProps): JSX.Element => {
 
   return (
     <form className="App-main__container-form" onSubmit={(ev) => onSubmit(ev)}>
-      <h2>Create Pokemon</h2>
+      <h2 className="App-main__container-form__title">Create Pokemon</h2>
       {mainInputs}
-      <div className="App-main__container-form__select-area">{stats}</div>
+      <div className="App-main__container-form__select-area">
+        {stats}
+        {!state.errors.statsValid && (
+          <p className="App-main__container-form__select-area--invalid">
+            Please select all Stats
+          </p>
+        )}
+      </div>
       <div className="App-main__container-form__checkbox-area">
         {radioButtons}
       </div>

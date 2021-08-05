@@ -5,6 +5,7 @@ export interface InputStringProps {
   atrrValue: string;
   nameClass: string;
   errorValue: string;
+  errorMesage: string;
 }
 
 export interface InputCB {
