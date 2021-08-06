@@ -1,9 +1,9 @@
 export interface PokemonData {
-  pokemonNumber: string;
+  pokemonNumber: number;
   pokemonName: string;
-  pokemonImg: string;
-  pokemonType: string;
-  pokemonStats: PokemonStats[];
+  pokemonImg: number;
+  pokemonType: PokemonType[];
+  pokemonStats: PokemonStat[];
 }
 
 export interface PokemonStats {
@@ -11,12 +11,36 @@ export interface PokemonStats {
   value: string;
 }
 
-// export interface MocksData {
-//   cards: PokemonData[];
-// }
-
 export interface FullListData {
   randomValue: number[];
   labelValue: string;
   attrName: string;
+}
+
+export interface PokemonProps {
+  name: string;
+  url: string;
+}
+
+export interface PokemonBaseRequest {
+  next: string;
+  previous: string;
+  results: PokemonProps[];
+}
+
+export interface PokemonDetailProps {
+  id: number;
+  name: string;
+  types: PokemonType[];
+  stats: PokemonStat[];
+}
+
+export interface PokemonType {
+  slot: number;
+  type: PokemonProps;
+}
+
+export interface PokemonStat {
+  base_stat : number;
+  stat: PokemonProps;
 }

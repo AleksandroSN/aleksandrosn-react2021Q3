@@ -1,34 +1,23 @@
-import { useEffect, useState } from "react";
-import { DummyMocks } from "../../api/dummydb";
-import { PokemonData } from "../../api/interfaces";
+import { PokemonDetailProps } from "../../api/interfaces";
 import { CardsMarkup } from "../cards/cards-markup";
 import { CreateForm } from "../forms/form";
 import "./cards-container.scss";
 
-export const CardsContainer = (): JSX.Element => {
-  const [state, setState] = useState<PokemonData[]>([]);
+interface CardsContainerProps {
+  state: PokemonDetailProps[];
+  updateCards: (modState: PokemonDetailProps) => void;
+}
 
-  useEffect(() => {
-    (async function getMocks() {
-      const mocks = await DummyMocks();
-      setState(mocks);
-    })();
-  }, []);
-
-  const updateCards = (modState: PokemonData) => {
-    setState((oldState) => [modState, ...oldState]);
-  };
-
-  console.log(state);
+export const CardsContainer = ({state, updateCards}: CardsContainerProps): JSX.Element => {
 
   const cardsArr = state.map((card) => (
     <CardsMarkup
-      key={card.pokemonName}
-      pokemonName={card.pokemonName}
-      pokemonNumber={card.pokemonNumber}
-      pokemonType={card.pokemonType}
-      pokemonImg={card.pokemonImg}
-      pokemonStats={card.pokemonStats}
+      key={card.name}
+      pokemonName={card.name}
+      pokemonNumber={card.id}
+      pokemonType={card.types}
+      pokemonImg={card.id}
+      pokemonStats={card.stats}
     />
   ));
 

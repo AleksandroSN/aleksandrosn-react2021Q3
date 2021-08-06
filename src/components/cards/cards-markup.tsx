@@ -11,11 +11,17 @@ export const CardsMarkup = ({
   const stats = pokemonStats.map((pokst) => {
     return (
       <div>
-        <p>{pokst.stat}</p>
-        {pokst.value}
+        <p>{pokst.stat.name}</p>
+        {pokst.base_stat}
       </div>
     );
   });
+
+  const types = pokemonType.map((x) => {
+    return (
+      <span>{x.type.name}</span>
+    )
+  })
 
   return (
     <div className="App-main__container-card--wrapper">
@@ -23,15 +29,15 @@ export const CardsMarkup = ({
         <div className="App-main__container-card--body">
           <div className="App-main__container-card-imgbox">
             <img
-              src={pokemonImg}
+              src={`https://cdn.traction.one/pokedex/pokemon/${pokemonImg}.png`}
               alt={`pokemon ${pokemonNumber}`}
               className="App-main__container-card-img"
             />
           </div>
           <div className="App-main__container-card-text">
-            <p className="App-main__container-card-id">{pokemonNumber}</p>
+            <p className="App-main__container-card-id">#{pokemonNumber}</p>
             <p className="App-main__container-card-name">{pokemonName}</p>
-            <p className="App-main__container-card-type">{pokemonType}</p>
+            <p className="App-main__container-card-type">{types}</p>
             <div className="App-main__container-card-stats">{stats}</div>
           </div>
         </div>

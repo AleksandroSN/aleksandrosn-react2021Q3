@@ -1,6 +1,5 @@
 import "./App.scss";
-import { CardsContainer } from "./components/cards-container/cards-container";
-import { SearchBar } from "./components/search-bar/searchBar";
+import { MainPage } from "./pages/mainPage";
 
 function App(): JSX.Element {
   return (
@@ -9,8 +8,7 @@ function App(): JSX.Element {
         <h2>React.Component.Pokemon</h2>
       </header>
       <main className="App-main">
-        <SearchBar />
-        <CardsContainer />
+        <MainPage />
       </main>
     </>
   );

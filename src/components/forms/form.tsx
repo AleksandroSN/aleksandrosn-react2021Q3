@@ -1,5 +1,5 @@
 import { FormEvent } from "react";
-import { PokemonData } from "../../api/interfaces";
+import { PokemonDetailProps } from "../../api/interfaces";
 import { listFormInputs } from "../../utils/listInputs";
 import { listRadioButtons } from "../../utils/listRadioB";
 import { fullListSelects } from "../../utils/randomStats";
@@ -10,7 +10,7 @@ import { RadioButton } from "./radio/radio";
 import { Select } from "./select/select";
 
 interface CreateFormProps {
-  updateCards: (modState: PokemonData) => void;
+  updateCards: (modState: PokemonDetailProps) => void;
 }
 const fullList = fullListSelects();
 
@@ -70,17 +70,17 @@ export const CreateForm = ({ updateCards }: CreateFormProps): JSX.Element => {
 
   const onSubmit = (ev: FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
-    const form = ev.target as HTMLFormElement;
-    form.reset();
-    const newCard = {
-      pokemonNumber: `#${state.pokemonNumber}`,
-      pokemonName: state.pokemonName,
-      pokemonImg: "./img/12.png",
-      pokemonType: state.pokemonType,
-      pokemonStats: state.pokemonStats,
-    };
-    updateCards(newCard);
-    resetState();
+    // const form = ev.target as HTMLFormElement;
+    // form.reset();
+    // const newCard = {
+    //   pokemonNumber: `#${state.pokemonNumber}`,
+    //   pokemonName: state.pokemonName,
+    //   pokemonImg: "./img/12.png",
+    //   pokemonType: state.pokemonType,
+    //   pokemonStats: state.pokemonStats,
+    // };
+    // updateCards(newCard);
+    // resetState();
   };
 
   const checkValid = () => {
