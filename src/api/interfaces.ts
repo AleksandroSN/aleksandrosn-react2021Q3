@@ -28,6 +28,12 @@ export interface PokemonBaseRequest {
   results: PokemonProps[];
 }
 
+// TO-DO pick omit
+export interface PokemonPagination {
+  next: string;
+  previous: string;
+}
+
 export interface PokemonDetailProps {
   id: number;
   name: string;

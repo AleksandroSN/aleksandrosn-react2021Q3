@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { getData, getDetailData } from "../api/api";
-import { PokemonDetailProps, PokemonProps } from "../api/interfaces";
+import {
+  PokemonBaseRequest,
+  PokemonDetailProps,
+  PokemonPagination,
+  PokemonProps,
+} from "../api/interfaces";
 import { CardsContainer } from "../components/cards-container/cards-container";
 import { SearchBar } from "../components/search-bar/searchBar";
 import { LIMIT_PER_PAGE } from "../utils/constants";
@@ -8,6 +13,7 @@ import { LIMIT_PER_PAGE } from "../utils/constants";
 export const MainPage = (): JSX.Element => {
   const [state, setState] = useState<PokemonDetailProps[]>([]);
   const [promises, setPromises] = useState<Promise<PokemonDetailProps>[]>([]);
+  const [pagination, setPagination] = useState<PokemonPagination>();
 
   const addPromises = (pokeArr: PokemonProps[]) => {
     pokeArr.forEach(({ name }) => {
@@ -19,8 +25,12 @@ export const MainPage = (): JSX.Element => {
 
   useEffect(() => {
     (async function getMocks() {
-      const data = await getData(LIMIT_PER_PAGE);
-      addPromises(data.results);
+      const { results, next, previous } = await getData(LIMIT_PER_PAGE);
+      setPagination({
+        next,
+        previous,
+      });
+      addPromises(results);
     })();
   }, []);
 
@@ -35,7 +45,13 @@ export const MainPage = (): JSX.Element => {
   return (
     <>
       <SearchBar addPromises={addPromises} />
-      <CardsContainer state={state} updateCards={updateCards} />
+      <CardsContainer
+        state={state}
+        updateCards={updateCards}
+        addPromises={addPromises}
+        pagination={pagination}
+        setPagination={setPagination}
+      />
     </>
   );
 };
