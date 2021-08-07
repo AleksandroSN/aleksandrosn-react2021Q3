@@ -41,6 +41,6 @@ export interface PokemonType {
 }
 
 export interface PokemonStat {
-  base_stat : number;
+  base_stat: number;
   stat: PokemonProps;
 }

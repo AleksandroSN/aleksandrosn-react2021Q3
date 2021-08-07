@@ -8,8 +8,10 @@ interface CardsContainerProps {
   updateCards: (modState: PokemonDetailProps) => void;
 }
 
-export const CardsContainer = ({state, updateCards}: CardsContainerProps): JSX.Element => {
-
+export const CardsContainer = ({
+  state,
+  updateCards,
+}: CardsContainerProps): JSX.Element => {
   const cardsArr = state.map((card) => (
     <CardsMarkup
       key={card.name}

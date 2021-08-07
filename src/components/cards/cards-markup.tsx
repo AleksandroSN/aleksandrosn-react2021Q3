@@ -18,10 +18,8 @@ export const CardsMarkup = ({
   });
 
   const types = pokemonType.map((x) => {
-    return (
-      <span>{x.type.name}</span>
-    )
-  })
+    return <span>{x.type.name}</span>;
+  });
 
   return (
     <div className="App-main__container-card--wrapper">
