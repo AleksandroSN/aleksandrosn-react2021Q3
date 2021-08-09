@@ -56,6 +56,7 @@ export const CardsContainer = ({
     addPromises(results);
   };
 
+  // TO-DO add sort on type,number,name
   return (
     <>
       <div className="App-main__container">

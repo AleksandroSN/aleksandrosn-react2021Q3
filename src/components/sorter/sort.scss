@@ -1,0 +1,20 @@
+.App-sort {
+  display: flex;
+  position: relative;
+
+  &__options {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: calc(90px / 2);
+
+    & li {
+      display: flex;
+      gap: 10px;
+    }
+
+    &.hide {
+      display: none;
+    }
+  }
+}

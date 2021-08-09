@@ -5,7 +5,7 @@ function App(): JSX.Element {
   return (
     <>
       <header className="App-header">
-        <h2>React.Component.Pokemon</h2>
+        <h2>React.API.Pokemon</h2>
       </header>
       <main className="App-main">
         <MainPage />
