@@ -1,7 +1,6 @@
 import { PokemonBaseRequest, PokemonDetailProps } from "./interfaces";
 
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
-const BASE_URL_PAGINATION = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit";
 
 // TO-DO add loader with component
 
@@ -17,9 +16,12 @@ export const getDetailData = async (
   }
 };
 
-export const getData = async (limit: string): Promise<PokemonBaseRequest> => {
+export const getData = async (
+  offset: string,
+  limit: string
+): Promise<PokemonBaseRequest> => {
   try {
-    const res = await fetch(`${BASE_URL_PAGINATION}=${limit}`);
+    const res = await fetch(`${BASE_URL}/?offset=${offset}&limit=${limit}`);
     const json = (await res.json()) as PokemonBaseRequest;
     return json;
   } catch (e) {

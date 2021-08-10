@@ -23,17 +23,13 @@ export interface PokemonProps {
 }
 
 export interface PokemonBaseRequest {
+  count: number;
   next: string;
   previous: string;
   results: PokemonProps[];
 }
 
-// TO-DO pick omit
-export interface PokemonPagination {
-  next: string;
-  previous: string;
-}
-
+export type PokemonPagination = Omit<PokemonBaseRequest, "results">;
 export interface PokemonDetailProps {
   id: number;
   name: string;
