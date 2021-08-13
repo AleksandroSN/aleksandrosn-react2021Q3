@@ -2,8 +2,6 @@ import { PokemonBaseRequest, PokemonDetailProps } from "./interfaces";
 
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
 
-// TO-DO add loader with component
-
 export const getDetailData = async (
   name: string
 ): Promise<PokemonDetailProps> => {

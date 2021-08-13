@@ -6,10 +6,10 @@ export interface PokemonData {
   pokemonStats: PokemonStat[];
 }
 
-export interface PokemonStats {
-  stat: string;
-  value: string;
-}
+// export interface PokemonStats {
+//   stat: string;
+//   value: string;
+// }
 
 export interface FullListData {
   randomValue: number[];

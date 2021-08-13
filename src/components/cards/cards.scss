@@ -44,8 +44,7 @@
     color: #fff;
   }
 
-  &-id,
-  &-type {
+  &-id {
     color: #000;
     border-radius: 100px;
     border: 2px solid #fff;
@@ -64,6 +63,18 @@
 
   &-type {
     @include every3rdElement($typeColors);
+
+    & span {
+      color: #000;
+      border-radius: 100px;
+      border: 2px solid #fff;
+      padding: 3px 15px;
+      font-size: 1.2rem;
+      background-color: #fff;
+      &:last-child {
+        margin-left: 10px;
+      }
+    }
   }
 
   &-stats {
@@ -81,6 +92,7 @@
     width: 100%;
 
     & div {
+      text-transform: uppercase;
       text-align: center;
       font-size: 1rem;
       font-weight: 700;

@@ -1,5 +1,5 @@
 import "./App.scss";
-import { MainPage } from "./pages/mainPage";
+import { MainPage } from "./pages/main-page/mainPage";
 
 function App(): JSX.Element {
   return (

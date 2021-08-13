@@ -1,23 +1,36 @@
 import { useState } from "react";
-import { PokemonDetailProps } from "../../api/interfaces";
+import { Order } from "../../api/types";
+import { listSortButtons } from "../../utils/listSortButtons";
+import { SortButton } from "./sort-buttons/sort-button";
 import "./sort.scss";
 
 interface SortProps {
-  setSortParam: React.Dispatch<React.SetStateAction<keyof PokemonDetailProps>>;
-  setSortCondig: React.Dispatch<React.SetStateAction<string>>;
+  sortBy: (order: Order, param: string) => void;
 }
 
-export const Sort = ({
-  setSortParam,
-  setSortCondig,
-}: SortProps): JSX.Element => {
+export const Sort = ({ sortBy }: SortProps): JSX.Element => {
   const [toogleSort, setToogleSort] = useState<boolean>(false);
+
+  const sortButtons = listSortButtons.map((sortButton) => {
+    return (
+      <SortButton
+        key={sortButton.param}
+        sortBy={sortBy}
+        sortButton={sortButton}
+      />
+    );
+  });
 
   return (
     <>
       <div className="App-sort">
-        <button type="button" onClick={() => setToogleSort((x) => !x)}>
-          Sort icon
+        <button
+          className="App-sort__button"
+          title="Filter"
+          type="button"
+          onClick={() => setToogleSort((x) => !x)}
+        >
+          <img src="../assets/icons/filter.svg" alt="filter icon" />
         </button>
         <ul
           className={
@@ -25,69 +38,7 @@ export const Sort = ({
           }
         >
           Sort by
-          <li>
-            Number{" "}
-            <button
-              type="button"
-              onClick={() => {
-                setSortCondig("ASC");
-                setSortParam("id");
-              }}
-            >
-              ASC
-            </button>{" "}
-            <button
-              type="button"
-              onClick={() => {
-                setSortCondig("DESC");
-                setSortParam("id");
-              }}
-            >
-              DESC
-            </button>
-          </li>
-          <li>
-            Name{" "}
-            <button
-              type="button"
-              onClick={() => {
-                setSortCondig("ASC");
-                setSortParam("name");
-              }}
-            >
-              ASC
-            </button>{" "}
-            <button
-              type="button"
-              onClick={() => {
-                setSortCondig("DESC");
-                setSortParam("name");
-              }}
-            >
-              DESC
-            </button>
-          </li>
-          <li>
-            Type{" "}
-            <button
-              type="button"
-              onClick={() => {
-                setSortCondig("ASC");
-                setSortParam("types");
-              }}
-            >
-              ASC
-            </button>{" "}
-            <button
-              type="button"
-              onClick={() => {
-                setSortCondig("DESC");
-                setSortParam("types");
-              }}
-            >
-              DESC
-            </button>
-          </li>
+          {sortButtons}
         </ul>
       </div>
     </>

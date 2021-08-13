@@ -36,6 +36,7 @@ export const CreateForm = ({ updateCards }: CreateFormProps): JSX.Element => {
     }) => {
       return (
         <Input
+          key={label}
           label={label}
           type={type}
           placeholder={placeholder}
@@ -64,23 +65,29 @@ export const CreateForm = ({ updateCards }: CreateFormProps): JSX.Element => {
 
   const radioButtons = listRadioButtons.map(({ name, id, label }) => {
     return (
-      <RadioButton name={name} id={id} label={label} updateType={updateType} />
+      <RadioButton
+        key={label}
+        name={name}
+        id={id}
+        label={label}
+        updateType={updateType}
+      />
     );
   });
 
   const onSubmit = (ev: FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
-    // const form = ev.target as HTMLFormElement;
-    // form.reset();
-    // const newCard = {
-    //   pokemonNumber: `#${state.pokemonNumber}`,
-    //   pokemonName: state.pokemonName,
-    //   pokemonImg: "./img/12.png",
-    //   pokemonType: state.pokemonType,
-    //   pokemonStats: state.pokemonStats,
-    // };
-    // updateCards(newCard);
-    // resetState();
+    const form = ev.target as HTMLFormElement;
+    form.reset();
+
+    const newCard = {
+      id: Number(state.pokemonNumber),
+      name: state.pokemonName,
+      types: state.pokemonType,
+      stats: state.pokemonStats,
+    };
+    updateCards(newCard);
+    resetState();
   };
 
   const checkValid = () => {

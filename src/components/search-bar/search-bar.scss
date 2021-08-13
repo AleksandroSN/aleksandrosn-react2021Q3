@@ -31,4 +31,13 @@
       box-shadow: rgba(0, 0, 0, 0.2) 0 4px 12px 0;
     }
   }
+
+  &__button {
+    border-width: 0;
+    cursor: pointer;
+    height: 34px;
+    background-color: hsl(0deg 0% 80%);
+    border-radius: 8px;
+    padding: 5px;
+  }
 }

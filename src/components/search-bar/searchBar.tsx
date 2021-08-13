@@ -1,40 +1,29 @@
 import { FormEvent, useRef } from "react";
-import { getData } from "../../api/api";
-import { PokemonPagination, PokemonProps } from "../../api/interfaces";
-import { MAX_LIMIT_PER_PAGE, OFFSET_PER_PAGE } from "../../utils/constants";
+import { MainPageState } from "../../pages/main-page/controller/mainPageReducer";
 import "./search-bar.scss";
 
 interface SearchBarProps {
-  addPromises: (pokeArr: PokemonProps[]) => void;
-  setPagination: React.Dispatch<
-    React.SetStateAction<PokemonPagination | undefined>
-  >;
+  changePage: (page: number) => Promise<void>;
+  searchPage: (searchElement: string) => Promise<void>;
+  state: MainPageState;
 }
 
 export const SearchBar = ({
-  addPromises,
-  setPagination,
+  changePage,
+  searchPage,
+  state,
 }: SearchBarProps): JSX.Element => {
   const searchRef = useRef<HTMLInputElement>(null);
 
   const onSubmit = async (ev: FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
     const searchEl = searchRef.current?.value.toLowerCase() as string;
-    const { next, previous, count, results } = await getData(
-      OFFSET_PER_PAGE,
-      MAX_LIMIT_PER_PAGE
-    );
 
-    const filteredState = results.filter((pokemon) =>
-      pokemon.name.toLowerCase().includes(searchEl)
-    );
-    setPagination({
-      next,
-      previous,
-      count: filteredState.length,
-    });
-    addPromises(filteredState);
-    // TO-DO if ERROR typing error and if empty result revert default state
+    if (searchEl === "") {
+      changePage(state.page);
+    } else {
+      searchPage(searchEl);
+    }
   };
 
   return (
@@ -49,7 +38,9 @@ export const SearchBar = ({
           placeholder="Search pokemon...."
         />
       </label>
-      <button type="submit">Search</button>
+      <button className="App-searchBar__button" type="submit">
+        Search
+      </button>
     </form>
   );
 };

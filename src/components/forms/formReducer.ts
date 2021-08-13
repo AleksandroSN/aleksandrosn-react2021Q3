@@ -1,11 +1,11 @@
-import { PokemonStats } from "../../api/interfaces";
+import { PokemonStat, PokemonType } from "../../api/interfaces";
 
 export interface FormState {
   pokemonName: string;
   pokemonNumber: string;
   pokemonDate: string;
-  pokemonStats: PokemonStats[];
-  pokemonType: string;
+  pokemonStats: PokemonStat[];
+  pokemonType: PokemonType[];
   agreement: boolean;
   errors: Record<string, unknown>;
 }
@@ -30,7 +30,7 @@ export const initialFormState: FormState = {
   pokemonNumber: "",
   pokemonDate: "",
   pokemonStats: [],
-  pokemonType: "",
+  pokemonType: [],
   agreement: false,
   errors: {
     nameValid: true,

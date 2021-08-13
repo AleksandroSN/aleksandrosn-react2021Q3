@@ -1,9 +1,9 @@
 import { DOTS, usePagination } from "./usePagination";
+import "./pagination.scss";
+import { PaginationDots, PaginationItem } from "../../utils/paginationHelper";
 
 interface PaginationProps {
-  nextPage: () => Promise<void>;
-  prevPage: () => Promise<void>;
-  pageOnNumber: (page: number) => Promise<void>;
+  changePage: (page: number) => Promise<void>;
   onPageChange: (page: number) => void;
   totalCount: number;
   siblingCount?: number;
@@ -17,9 +17,7 @@ export const Pagination = ({
   currentPage,
   pageSize,
   onPageChange,
-  nextPage,
-  prevPage,
-  pageOnNumber,
+  changePage,
 }: PaginationProps): JSX.Element | null => {
   const paginationRange = usePagination({
     currentPage,
@@ -32,59 +30,64 @@ export const Pagination = ({
     return null;
   }
 
+  // TO-DO перенести или объединить ?
+
   const onNext = () => {
     onPageChange(currentPage + 1);
+    changePage(currentPage + 1);
   };
 
   const onPrevious = () => {
     onPageChange(currentPage - 1);
+    changePage(currentPage - 1);
   };
 
-  const lastPage = paginationRange![paginationRange!.length - -1];
+  const lastPage = paginationRange![paginationRange!.length - 1];
+
+  const paginationItem = paginationRange!.map((pageNumber) => {
+    if (pageNumber === DOTS) {
+      return <PaginationDots key={pageNumber} />;
+    }
+    return (
+      <PaginationItem
+        key={pageNumber}
+        pageNumber={pageNumber as number}
+        currentPage={currentPage}
+        onPageChange={onPageChange}
+        changePage={changePage}
+      />
+    );
+  });
 
   return (
-    <>
-      <button
-        type="button"
-        className="pagination-item"
-        onClick={() => {
-          onPrevious();
-          prevPage();
-        }}
-      >
-        PREV
-      </button>
-      {paginationRange!.map((pageNumber) => {
-        if (pageNumber === DOTS) {
-          return (
-            <button type="button" className="pagination-item dots">
-              &#8230;
-            </button>
-          );
-        }
-        return (
+    <div className="App-main__pagination__wrapper">
+      <ul className="App-main__pagination__list">
+        <li className="pagination-item">
           <button
-            className="pagination-item"
-            onClick={() => {
-              onPageChange(pageNumber as number);
-              pageOnNumber(pageNumber as number);
-            }}
             type="button"
+            className="pagination-item__button arrow left"
+            disabled={currentPage === 1}
+            onClick={() => {
+              onPrevious();
+            }}
           >
-            {pageNumber}
+            prev
           </button>
-        );
-      })}
-      <button
-        type="button"
-        className="pagination-iteme"
-        onClick={() => {
-          onNext();
-          nextPage();
-        }}
-      >
-        NEXT
-      </button>
-    </>
+        </li>
+        {paginationItem}
+        <li className="pagination-item">
+          <button
+            type="button"
+            className="pagination-item__button arrow right"
+            disabled={currentPage === lastPage}
+            onClick={() => {
+              onNext();
+            }}
+          >
+            next
+          </button>
+        </li>
+      </ul>
+    </div>
   );
 };

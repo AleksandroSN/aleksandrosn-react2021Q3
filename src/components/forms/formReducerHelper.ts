@@ -1,63 +1,91 @@
 import { useReducer } from "react";
-import { PokemonStats } from "../../api/interfaces";
+import { PokemonStat } from "../../api/interfaces";
 import { LAST_NUMBER_POKEMON, MAX_COUNT_STATS } from "../../utils/constants";
 import { validateField } from "../../utils/validateField";
-import { formReducer, FORM_ACTIONS, initialFormState } from "./formReducer";
+import {
+  ActionTypes,
+  formReducer,
+  FormState,
+  FORM_ACTIONS,
+  initialFormState,
+} from "./formReducer";
 import { InputCB } from "./interfaceAndTypesForms";
 
-export const FormReducerHelper = () => {
+interface FormReducerReturns {
+  state: FormState;
+  dispatch: React.Dispatch<ActionTypes>;
+  updateName: (inputValue: string) => void;
+  updateNumber: (inputValue: string) => void;
+  updateType: (inputValue: string) => void;
+  updateDate: (inputValue: string) => void;
+  updateAgreement: (inputValue: boolean) => void;
+  updatePokemonStats: (labelValue: string, value: string) => void;
+  resetState: () => void;
+  inputsCB: InputCB;
+}
+
+export const FormReducerHelper = (): FormReducerReturns => {
   const [state, dispatch] = useReducer(formReducer, initialFormState);
 
-  const updateName = (inputvalue: string): void => {
-    const nameValid = validateField(/^\p{Letter}{1,30}$/iu, inputvalue);
+  const updateName = (inputValue: string): void => {
+    const nameValid = validateField(/^\p{Letter}{1,30}$/iu, inputValue);
     dispatch({
       type: FORM_ACTIONS.SET_NAME,
       payload: {
-        pokemonName: inputvalue,
+        pokemonName: inputValue,
         errors: { ...state.errors, nameValid },
       },
     });
   };
 
-  const updateNumber = (inputvalue: string) => {
-    const numberValid = Number(inputvalue) > LAST_NUMBER_POKEMON;
+  const updateNumber = (inputValue: string) => {
+    const numberValid = Number(inputValue) > LAST_NUMBER_POKEMON;
     dispatch({
       type: FORM_ACTIONS.SET_NUMBER,
       payload: {
-        pokemonNumber: inputvalue,
+        pokemonNumber: inputValue,
         errors: { ...state.errors, numberValid },
       },
     });
   };
 
-  const updateType = (inputvalue: string) => {
-    const typeValid = inputvalue !== undefined;
+  const updateType = (inputValue: string) => {
+    const typeValid = inputValue !== undefined;
     dispatch({
       type: FORM_ACTIONS.SET_TYPE,
       payload: {
-        pokemonType: inputvalue,
+        pokemonType: [
+          ...state.pokemonType,
+          {
+            slot: 1,
+            type: {
+              name: inputValue,
+              url: "https://pokeapi.co/api/v2/type/12/",
+            },
+          },
+        ],
         errors: { ...state.errors, typeValid },
       },
     });
   };
 
-  const updateDate = (inputvalue: string) => {
-    const dateValid = inputvalue !== "";
+  const updateDate = (inputValue: string) => {
+    const dateValid = inputValue !== "";
     dispatch({
       type: FORM_ACTIONS.SET_DATE,
       payload: {
-        pokemonDate: inputvalue,
+        pokemonDate: inputValue,
         errors: { ...state.errors, dateValid },
       },
     });
   };
 
-  const updateAgreement = (inputvalue: boolean) => {
+  const updateAgreement = (inputValue: boolean) => {
     dispatch({
       type: FORM_ACTIONS.SET_AGREE,
       payload: {
-        agreement: inputvalue,
-        errors: { ...state.errors, agreement: inputvalue },
+        agreement: inputValue,
+        errors: { ...state.errors, agreement: inputValue },
       },
     });
   };
@@ -66,12 +94,15 @@ export const FormReducerHelper = () => {
     const statsValid =
       state.pokemonStats.length > MAX_COUNT_STATS ||
       state.pokemonStats.length === MAX_COUNT_STATS;
-    const newData: PokemonStats = {
-      stat: labelValue,
-      value,
+    const newData: PokemonStat = {
+      base_stat: Number(value),
+      stat: {
+        name: labelValue,
+        url: `https://pokeapi.co/api/v2/stat/${value}/`,
+      },
     };
     const checkDupe = state.pokemonStats.findIndex(
-      (el) => el.stat === labelValue
+      (el) => String(el.base_stat) === labelValue
     );
     if (checkDupe >= 0) {
       dispatch({
