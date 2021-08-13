@@ -1,0 +1,21 @@
+.App-main__container {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(250px, 1fr));
+  margin: 30px 0;
+  padding-top: 10rem;
+  gap: 40px;
+
+  @media screen and (max-width: 1440px) {
+    padding: 0 20px;
+    gap: 30px;
+  }
+
+  @media screen and (max-width: 960px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media screen and (max-width: 540px) {
+    gap: 10px;
+  }
+}
