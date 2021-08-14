@@ -1,0 +1,11 @@
+.App-header {
+  &__nav {
+    &-link {
+      color: red;
+
+      &--active {
+        background-color: royalblue;
+      }
+    }
+  }
+}

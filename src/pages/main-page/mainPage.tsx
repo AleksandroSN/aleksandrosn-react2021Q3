@@ -25,7 +25,6 @@ export const MainPage = (): JSX.Element => {
     searchPage,
   } = MainPageReducerHelper();
 
-
   // To-DO create custom useFetch
   useEffect(() => {
     (async function getMocks() {
