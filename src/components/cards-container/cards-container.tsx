@@ -1,5 +1,5 @@
 import { PokemonDetailProps } from "../../api/interfaces";
-import { CardsMarkup } from "../cards/cards-markup";
+import { Cards } from "../cards/cards";
 import { CreateForm } from "../forms/form";
 import "./cards-container.scss";
 
@@ -13,7 +13,7 @@ export const CardsContainer = ({
   updateCards,
 }: CardsContainerProps): JSX.Element => {
   const cardsArr = state.map((card) => (
-    <CardsMarkup
+    <Cards
       key={card.name}
       pokemonName={card.name}
       pokemonNumber={card.id}

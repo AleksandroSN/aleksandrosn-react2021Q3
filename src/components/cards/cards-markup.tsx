@@ -1,13 +1,12 @@
 import { PokemonData } from "../../api/interfaces";
-import "./cards.scss";
 
-export const CardsMarkup = ({
+export const CardsMarkup: React.FC<PokemonData> = ({
+  pokemonImg,
   pokemonNumber,
   pokemonName,
-  pokemonImg,
   pokemonType,
   pokemonStats,
-}: PokemonData): JSX.Element => {
+}: PokemonData) => {
   const stats = pokemonStats.map((pokst) => {
     return (
       <div>

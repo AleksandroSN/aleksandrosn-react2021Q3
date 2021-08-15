@@ -16,5 +16,8 @@ module.exports = merge(common, {
     historyApiFallback: true,
     port: 3030,
   },
-  output: { path: path.join(__dirname, "../build"), filename: "[name].[fullhash].js" },
+  output: { 
+    path: path.join(__dirname, "../build"), 
+    filename: "[name].[fullhash].js",
+    publicPath: '/' },
 });

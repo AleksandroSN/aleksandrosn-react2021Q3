@@ -9,6 +9,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { Header } from "./components/header/header";
 import { Page404 } from "./pages/404/page404";
 import { listRoutes } from "./utils/listRoutes";
+import { DetailPage } from "./pages/detail-page/detail-page";
 
 function App(): JSX.Element {
   const RoutesList = listRoutes.map(({ path, Component }) => {
@@ -30,9 +31,8 @@ function App(): JSX.Element {
       >
         <Switch location={location}>
           {RoutesList}
-          <Route>
-            <Page404 />
-          </Route>
+          <Route path="/details/:name" exact component={DetailPage} />
+          <Route component={Page404} />
         </Switch>
       </CSSTransition>
     </TransitionGroup>

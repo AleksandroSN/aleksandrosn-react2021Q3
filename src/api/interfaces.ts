@@ -30,11 +30,15 @@ export interface PokemonBaseRequest {
 }
 
 export type PokemonPagination = Omit<PokemonBaseRequest, "results">;
-export interface PokemonDetailProps {
+export type PokemonDetailProps = Omit<PokemonAllData, "height" | "weight">;
+
+export interface PokemonAllData {
   id: number;
   name: string;
   types: PokemonType[];
   stats: PokemonStat[];
+  height?: number;
+  weight?: number;
 }
 
 export interface PokemonType {

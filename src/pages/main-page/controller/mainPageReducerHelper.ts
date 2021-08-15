@@ -96,10 +96,10 @@ export const MainPageReducerHelper = (): FormReducerReturns => {
 
   const sorter = (param: keyof PokemonDetailProps): void => {
     state.cards.sort((a, b) => {
-      if (a[param] < b[param]) {
+      if (a[param]! < b[param]!) {
         return state.sortConfig === "ASC" ? -1 : 1;
       }
-      if (a[param] > b[param]) {
+      if (a[param]! > b[param]!) {
         return state.sortConfig === "ASC" ? 1 : -1;
       }
       return 0;
