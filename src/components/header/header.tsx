@@ -26,7 +26,7 @@ export const Header: React.FC = () => {
           <a href="./" className="App-header__logo-link">
             <img
               className="App-header__logo-img"
-              src="../assets/logo.svg"
+              src="./logo.svg"
               alt="logo"
             />
           </a>

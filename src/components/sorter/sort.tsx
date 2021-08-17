@@ -30,7 +30,7 @@ export const Sort = ({ sortBy }: SortProps): JSX.Element => {
           type="button"
           onClick={() => setToogleSort((x) => !x)}
         >
-          <img src="../assets/icons/filter.svg" alt="filter icon" />
+          <img src="./icons/filter.svg" alt="filter icon" />
         </button>
         <ul
           className={

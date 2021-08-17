@@ -20,7 +20,7 @@ export const SortButton = ({
           sortBy("ASC", `${sortButton.param}`);
         }}
       >
-        <img src="../assets/icons/asc.png" alt="sort asc icon" />
+        <img src="./icons/asc.png" alt="sort asc icon" />
       </button>{" "}
       <button
         className="App-sort__options-button button--asc"
@@ -29,7 +29,7 @@ export const SortButton = ({
           sortBy("DESC", `${sortButton.param}`);
         }}
       >
-        <img src="../assets/icons/desc.png" alt="sort desc icon" />
+        <img src="./icons/desc.png" alt="sort desc icon" />
       </button>
     </li>
   );
