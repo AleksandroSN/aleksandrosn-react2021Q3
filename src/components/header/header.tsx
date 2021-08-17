@@ -6,22 +6,35 @@ export const Header: React.FC = () => {
   const firstTwoRoute = listRoutes.slice(0, 2);
   const NavLinkList = firstTwoRoute.map((route) => {
     return (
-      <NavLink
-        key={route.path}
-        className="App-header__nav-link"
-        activeClassName="App-header__nav-link--active"
-        to={route.path}
-        exact
-      >
-        {route.name}
-      </NavLink>
+      <li className="App-header__nav-item">
+        <NavLink
+          key={route.path}
+          className="App-header__nav-link"
+          activeClassName="App-header__nav-link--active"
+          to={route.path}
+          exact
+        >
+          {route.name}
+        </NavLink>
+      </li>
     );
   });
   return (
     <>
       <header className="App-header">
+        <div className="App-header__logo">
+          <a href="./" className="App-header__logo-link">
+            <img
+              className="App-header__logo-img"
+              src="../assets/logo.svg"
+              alt="logo"
+            />
+          </a>
+        </div>
+        <nav className="App-header__nav">
+          <ul className="App-header__nav-list">{NavLinkList}</ul>
+        </nav>
         <h1 className="App-header__title">React.Router.Pokemon</h1>
-        <nav className="App-header__nav">{NavLinkList}</nav>
       </header>
     </>
   );

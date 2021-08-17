@@ -1,11 +1,49 @@
 .App-header {
-  &__nav {
+  height: 90px;
+  width: 100%;
+  padding: 0 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  &__logo {
     &-link {
-      color: red;
+      display: flex;
+    }
+
+    &-img {
+      height: calc(90px - 1rem);
+      width: calc(90px - 1rem);
+    }
+  }
+
+  &__nav {
+    margin: 0 3rem 0 auto;
+
+    &-list {
+      display: flex;
+      gap: 30px;
+    }
+
+    &-item {
+      box-shadow: inset 0 0 0px 1px #3b4cca;
+      border-radius: 10px;
+    }
+    &-link {
+      padding: 1rem;
+      display: block;
+      color: #000;
 
       &--active {
-        background-color: royalblue;
+        color: #ffde00;
+        background-color: #3b4cca;
+        border-radius: 10px;
       }
     }
+  }
+
+  &__title {
+    flex: 100%;
+    text-align: center;
   }
 }
