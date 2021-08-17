@@ -4,10 +4,6 @@ import { getDetailData } from "../../api/api";
 import { PokemonAllData } from "../../api/interfaces";
 import { CardsMarkup } from "../../components/cards/cards-markup";
 
-// interface Props {
-
-// }
-
 interface ParamsDetailPage {
   name: string;
 }
@@ -17,8 +13,6 @@ export const DetailPage = () => {
     null
   );
   const { name } = useParams<ParamsDetailPage>();
-  // const history = useHistory();
-  // history.go(0);
 
   useEffect(() => {
     (async function sendReq() {

@@ -3,7 +3,8 @@ import { NavLink } from "react-router-dom";
 import { listRoutes } from "../../utils/listRoutes";
 
 export const Header: React.FC = () => {
-  const NavLinkList = listRoutes.map((route) => {
+  const firstTwoRoute = listRoutes.slice(0, 2);
+  const NavLinkList = firstTwoRoute.map((route) => {
     return (
       <NavLink
         key={route.path}
