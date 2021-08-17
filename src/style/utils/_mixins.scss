@@ -1,7 +1,7 @@
 @mixin every3rdElement($list) {
   @for $i from 0 through 2 {
     @each $key, $color in $list {
-      &:nth-child(#{$key * 3}n - #{$i}) .App-main__container-card {
+      &:nth-child(#{$key}n) {
         background-color: $color;
       }
     }

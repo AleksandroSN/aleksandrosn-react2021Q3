@@ -11,7 +11,10 @@ export const Cards = ({
   pokemonStats,
 }: PokemonData): JSX.Element => {
   return (
-    <NavLink to={`/details/${pokemonName}`}>
+    <NavLink
+      className="App-main__container-card--link"
+      to={`/details/${pokemonName}`}
+    >
       <CardsMarkup
         key={pokemonName}
         pokemonName={pokemonName}

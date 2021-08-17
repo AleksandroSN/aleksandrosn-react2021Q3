@@ -9,12 +9,15 @@
   max-width: 450px;
   margin: 0 auto;
 
+  background-color: red;
+  &--link {
+    @include every3rdElementGradient($cardBackgroundGradient);
+  }
+
   &--wrapper {
     position: relative;
-    width: 100%;
+    // width: 100%;
     margin-bottom: 7rem;
-
-    @include every3rdElementGradient($cardBackgroundGradient);
   }
 
   &--body {
@@ -62,15 +65,14 @@
   }
 
   &-type {
-    @include every3rdElement($typeColors);
-
     & span {
+      @include every3rdElement($typeColors);
       color: #000;
       border-radius: 100px;
       border: 2px solid #fff;
       padding: 3px 15px;
       font-size: 1.2rem;
-      background-color: #fff;
+      // background-color: #fff;
       &:last-child {
         margin-left: 10px;
       }

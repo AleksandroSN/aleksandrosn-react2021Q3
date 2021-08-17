@@ -1,0 +1,10 @@
+.App-main__detail-page {
+  margin-top: 10rem;
+  display: flex;
+  justify-content: space-evenly;
+
+  &__text {
+    text-transform: capitalize;
+    font-size: 2rem;
+  }
+}

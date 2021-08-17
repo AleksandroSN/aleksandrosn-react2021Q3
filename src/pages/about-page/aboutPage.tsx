@@ -1,7 +1,11 @@
+import "./about-page.scss";
+
 export const AboutPage: React.FC = () => {
   return (
     <>
-      <h2>About Page</h2>
+      <div className="App-main__about-page">
+        <h2>About Page</h2>
+      </div>
     </>
   );
 };

@@ -66,29 +66,25 @@ button {
 }
 
 .App-main__anime-page {
-  position: absolute;
-  left: 15px;
-  right: 15px;
-}
+  &-enter {
+    opacity: 0;
+    transform: scale(1.1);
 
-.App-main__anime-page-enter {
-  opacity: 0;
-  transform: scale(1.1);
-}
+    &-active {
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity 300ms, transform 300ms;
+    }
+  }
 
-.App-main__anime-page-enter-active {
-  opacity: 1;
-  transform: scale(1);
-  transition: opacity 300ms, transform 300ms;
-}
+  &-exit {
+    opacity: 1;
+    transform: scale(1);
 
-.App-main__anime-page-exit {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.App-main__anime-page-exit-active {
-  opacity: 0;
-  transform: scale(0.9);
-  transition: opacity 300ms, transform 300ms;
+    &-active {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 300ms, transform 300ms;
+    }
+  }
 }
