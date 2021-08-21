@@ -27,6 +27,7 @@ export interface PokemonBaseRequest {
   next: string;
   previous: string;
   results: PokemonProps[];
+  // results: PokemonDetailProps[];
 }
 
 export type PokemonPagination = Omit<PokemonBaseRequest, "results">;

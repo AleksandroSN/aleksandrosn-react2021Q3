@@ -1,12 +1,17 @@
-import { PokemonDetailProps, PokemonPagination } from "../../../api/interfaces";
+import {
+  PokemonDetailProps,
+  PokemonPagination,
+  PokemonProps,
+} from "../../../api/interfaces";
 
 export interface MainPageState {
-  cards: PokemonDetailProps[];
+  // cards: PokemonDetailProps[];
+  cards: PokemonProps[];
   cardsPromises: Promise<PokemonDetailProps>[];
-  loader: boolean;
+  // loader: boolean;
   paginationState: PokemonPagination;
   sortConfig: string;
-  sortParam: keyof PokemonDetailProps;
+  sortParam: keyof PokemonProps | null;
   page: number;
   pageSize: number;
 }
@@ -19,7 +24,7 @@ export interface ActionTypes {
 export enum FormActions {
   SET_CARDS = "setCards",
   SET_CARDS_PROMISES = "setCardsPromises",
-  SET_LOADER = "setLoader",
+  // SET_LOADER = "setLoader",
   SET_PAGINATION_STATE = "setPaginationState",
   SET_SORT_ASC = "setSortOnAsc",
   SET_SORT_DESC = "setSortOnDesc",
@@ -30,14 +35,14 @@ export enum FormActions {
 export const initialMainPageState: MainPageState = {
   cards: [],
   cardsPromises: [],
-  loader: false,
+  // loader: false,
   paginationState: {
     next: "",
     previous: "",
     count: 0,
   },
   sortConfig: "ASC",
-  sortParam: "id",
+  sortParam: null,
   page: 1,
   pageSize: 20,
 };
@@ -47,11 +52,11 @@ export const MainPageReducer = (
   action: ActionTypes
 ): MainPageState => {
   switch (action.type) {
-    case FormActions.SET_LOADER:
-      return {
-        ...state,
-        ...{ loader: (action.payload as MainPageState).loader },
-      };
+    // case FormActions.SET_LOADER:
+    //   return {
+    //     ...state,
+    //     ...{ loader: (action.payload as MainPageState).loader },
+    //   };
     case FormActions.SET_PAGINATION_STATE:
       return {
         ...state,

@@ -1,0 +1,27 @@
+.App-main__container-card {
+  border-radius: 70px;
+  &--preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 0;
+  }
+
+  &-body--preview {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+
+  &-imgbox--preview {
+    display: flex;
+    position: static;
+    top: unset;
+    left: unset;
+    transform: unset;
+  }
+
+  &-img--preview {
+    max-width: 300px;
+  }
+}

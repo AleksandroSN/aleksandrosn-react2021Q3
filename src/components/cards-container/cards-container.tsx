@@ -1,10 +1,11 @@
-import { PokemonDetailProps } from "../../api/interfaces";
-import { Cards } from "../cards/cards";
+import { NavLink } from "react-router-dom";
+import { PokemonDetailProps, PokemonProps } from "../../api/interfaces";
+import { CardsPreview } from "../cards/cards-preview";
 import { CreateForm } from "../forms/form";
 import "./cards-container.scss";
 
 interface CardsContainerProps {
-  state: PokemonDetailProps[];
+  state: PokemonProps[];
   updateCards: (modState: PokemonDetailProps) => void;
 }
 
@@ -13,14 +14,12 @@ export const CardsContainer = ({
   updateCards,
 }: CardsContainerProps): JSX.Element => {
   const cardsArr = state.map((card) => (
-    <Cards
-      key={card.name}
-      pokemonName={card.name}
-      pokemonNumber={card.id}
-      pokemonType={card.types}
-      pokemonImg={card.id}
-      pokemonStats={card.stats}
-    />
+    <NavLink
+      className="App-main__container-card--link"
+      to={`/details/${card.name}`}
+    >
+      <CardsPreview key={card.name} name={card.name} url={card.url} />
+    </NavLink>
   ));
 
   return (

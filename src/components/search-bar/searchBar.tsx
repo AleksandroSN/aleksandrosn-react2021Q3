@@ -5,6 +5,7 @@ import "./search-bar.scss";
 interface SearchBarProps {
   changePage: (page: number) => Promise<void>;
   searchPage: (searchElement: string) => Promise<void>;
+  // searchPage: (searchElement: string) => void
   state: MainPageState;
 }
 

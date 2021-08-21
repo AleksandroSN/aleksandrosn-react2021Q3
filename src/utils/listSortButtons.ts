@@ -4,16 +4,16 @@ export interface PropsListSortButtons {
 }
 
 export const listSortButtons: PropsListSortButtons[] = [
-  {
-    sortBy: "Number :",
-    param: "id",
-  },
+  // {
+  //   sortBy: "Number :",
+  //   param: "id",
+  // },
   {
     sortBy: "Name :",
     param: "name",
   },
-  {
-    sortBy: "Type :",
-    param: "types",
-  },
+  // {
+  //   sortBy: "Type :",
+  //   param: "types",
+  // },
 ];

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import { getData } from "../../api/api";
+import { useDispatch } from "react-redux";
+import { loadStatus, useAppSelector } from "../../store/store";
 import { CardsContainer } from "../../components/cards-container/cards-container";
 import { Loader } from "../../components/loader/loader";
 import { Pagination } from "../../components/pagination/pagination";
@@ -7,16 +8,17 @@ import { SearchBar } from "../../components/search-bar/searchBar";
 import { Sort } from "../../components/sorter/sort";
 import { LIMIT_PER_PAGE, OFFSET_PER_PAGE } from "../../utils/constants";
 import { MainPageReducerHelper } from "./controller/mainPageReducerHelper";
+import { getData } from "../../store/api/apiAsyncThunk";
 
 export const MainPage = (): JSX.Element => {
+  const dispatch = useDispatch();
+  const loaderStatus = useAppSelector(loadStatus);
+
   const {
     state,
-    setLoader,
-    setPaginationState,
-    addPromises,
+    updatePokData,
     sorter,
     sortBy,
-    setCards,
     addOneCard,
     totalCountHelper,
     setPage,
@@ -26,26 +28,19 @@ export const MainPage = (): JSX.Element => {
   } = MainPageReducerHelper();
 
   // To-DO create custom useFetch
-  useEffect(() => {
-    (async function getMocks() {
-      const { results, next, previous, count } = await getData(
-        OFFSET_PER_PAGE,
-        LIMIT_PER_PAGE
-      );
-      setPaginationState(next, previous, count);
-      addPromises(results);
-    })();
-  }, [setPaginationState, addPromises]);
 
   useEffect(() => {
-    setLoader(true);
-    Promise.all(state.cardsPromises).then((x) => setCards(x));
-    setTimeout(() => {
-      setLoader(false);
-    }, 2000);
-  }, [state.cardsPromises, setLoader, setCards]);
+    dispatch(getData({ offset: OFFSET_PER_PAGE, limit: LIMIT_PER_PAGE }));
+  }, [dispatch]);
 
-  sorter(state.sortParam);
+  useEffect(() => {
+    updatePokData();
+  }, [updatePokData]);
+
+  //  useEffect(() => {
+  // TO-DO fix sorter
+  sorter(state.cards, state.sortParam, state.sortConfig);
+  //  }, [sorter, state.cards, state.sortParam, state.sortConfig])
 
   return (
     <>
@@ -83,7 +78,7 @@ export const MainPage = (): JSX.Element => {
         />
       </section>
       <section className="App-main__container">
-        {state.loader ? (
+        {loaderStatus ? (
           <Loader />
         ) : (
           <CardsContainer state={state.cards} updateCards={addOneCard} />
