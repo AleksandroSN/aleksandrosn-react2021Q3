@@ -1,12 +1,12 @@
 import "./header.scss";
 import { NavLink } from "react-router-dom";
-import { listRoutes } from "../../utils/listRoutes";
+import { listRoutes } from "../routes/listRoutes";
 
 export const Header: React.FC = () => {
   const firstTwoRoute = listRoutes.slice(0, 2);
   const NavLinkList = firstTwoRoute.map((route) => {
     return (
-      <li className="App-header__nav-item">
+      <li key={route.name} className="App-header__nav-item">
         <NavLink
           key={route.path}
           className="App-header__nav-link"

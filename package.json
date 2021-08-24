@@ -7,7 +7,9 @@
     "build": "webpack --config configs/webpack.prod.js",
     "start": "webpack serve --open --config configs/webpack.dev.js",
     "format": "prettier --write src/**/*.ts{,x} src/**/*.scss",
-    "lint": "tsc --noEmit && eslint src/**/*.ts{,x}"
+    "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
+    "test": "jest",
+    "test-watch": "jest --watch"
   },
   "keywords": [],
   "author": "",
@@ -58,6 +60,7 @@
     "sass-loader": "^11.1.0",
     "ts-jest": "^27.0.5",
     "ts-loader": "^9.2.4",
+    "ts-node": "^10.2.1",
     "webpack": "^5.47.0",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2",

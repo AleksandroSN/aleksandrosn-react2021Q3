@@ -1,5 +1,5 @@
 import { Route } from "react-router-dom";
-import { listRoutes } from "../../utils/listRoutes";
+import { listRoutes } from "./listRoutes";
 
 export const RoutesList = listRoutes.map(({ path, Component }) => {
   return (
