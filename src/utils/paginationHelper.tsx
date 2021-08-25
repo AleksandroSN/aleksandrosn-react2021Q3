@@ -37,6 +37,7 @@ export const PaginationItem = ({
           changePage(pageNumber as number);
         }}
         type="button"
+        role="button"
       >
         {pageNumber}
       </button>

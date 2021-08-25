@@ -44,6 +44,7 @@ export const Pagination = ({
 
   const lastPage = paginationRange![paginationRange!.length - 1];
 
+  // TO-DO fix many dots
   const paginationItem = paginationRange!.map((pageNumber) => {
     if (pageNumber === DOTS) {
       return <PaginationDots key={pageNumber} />;

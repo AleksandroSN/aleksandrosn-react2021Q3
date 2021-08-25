@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --config configs/webpack.prod.js",
     "start": "webpack serve --open --config configs/webpack.dev.js",
-    "format": "prettier --write src/**/*.ts{,x} src/**/*.scss",
+    "format": "prettier --write tests/*.ts{,x} src/**/*.ts{,x} src/**/*.scss ",
     "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
     "test": "jest",
     "test-watch": "jest --watch"
