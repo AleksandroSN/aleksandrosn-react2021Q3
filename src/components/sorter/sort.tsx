@@ -28,6 +28,7 @@ export const Sort = ({ sortBy }: SortProps): JSX.Element => {
           className="App-sort__button"
           title="Filter"
           type="button"
+          data-testid="toggleButton"
           onClick={() => setToogleSort((x) => !x)}
         >
           <img src="./icons/filter.svg" alt="filter icon" />

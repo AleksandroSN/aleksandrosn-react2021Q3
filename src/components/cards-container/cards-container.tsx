@@ -4,7 +4,7 @@ import { CardsPreview } from "../cards/cards-preview";
 import { CreateForm } from "../forms/form";
 import "./cards-container.scss";
 
-interface CardsContainerProps {
+export interface CardsContainerProps {
   state: PokemonProps[];
   updateCards: (modState: PokemonDetailProps) => void;
 }
@@ -15,6 +15,7 @@ export const CardsContainer = ({
 }: CardsContainerProps): JSX.Element => {
   const cardsArr = state.map((card) => (
     <NavLink
+      key={card.name}
       className="App-main__container-card--link"
       to={`/details/${card.name}`}
     >

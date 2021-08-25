@@ -15,15 +15,17 @@ export const SortButton = ({
       <div className="App-sort__options-title">{sortButton.sortBy}</div>
       <button
         className="App-sort__options-button button--asc"
+        data-testid="sort-button-asc"
         type="button"
         onClick={() => {
           sortBy("ASC", `${sortButton.param}`);
         }}
       >
         <img src="./icons/asc.png" alt="sort asc icon" />
-      </button>{" "}
+      </button>
       <button
-        className="App-sort__options-button button--asc"
+        className="App-sort__options-button button--desc"
+        data-testid="sort-button-desc"
         type="button"
         onClick={() => {
           sortBy("DESC", `${sortButton.param}`);

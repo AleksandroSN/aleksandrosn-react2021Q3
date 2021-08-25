@@ -9,7 +9,7 @@ export const CardsMarkup: React.FC<PokemonData> = ({
 }: PokemonData) => {
   const stats = pokemonStats.map((pokst) => {
     return (
-      <div>
+      <div key={pokst.stat.name}>
         <p>{pokst.stat.name}</p>
         {pokst.base_stat}
       </div>
@@ -17,7 +17,7 @@ export const CardsMarkup: React.FC<PokemonData> = ({
   });
 
   const types = pokemonType.map((x) => {
-    return <span>{x.type.name}</span>;
+    return <span key={x.type.name}>{x.type.name}</span>;
   });
 
   return (

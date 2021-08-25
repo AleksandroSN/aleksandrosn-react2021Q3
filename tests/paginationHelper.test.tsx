@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom/extend-expect";
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Pagination } from "../src/components/pagination/pagination";
 import { activePage, PaginationItem } from "../src/utils/paginationHelper";
@@ -17,8 +17,8 @@ describe("active page test", () => {
 const onChangePage = (page: number) => {
   return new Promise((res) => {
     res(page + 1);
-  })
-}
+  });
+};
 
 const testState = {
   totalCount: 1118,
@@ -27,8 +27,8 @@ const testState = {
   setPage(page: number) {
     return (testState.currentPage = page);
   },
-  async changePage(page: number){
-    onChangePage(page)
+  async changePage(page: number) {
+    onChangePage(page);
   },
 };
 
@@ -45,18 +45,19 @@ test("check render dots", () => {
   const dots = getAllByText(/.../i);
   dots.forEach((dot) => {
     expect(dot).toBeInTheDocument();
-  })
+  });
 });
 
 test("check render page", () => {
   const { getByRole } = render(
-    <PaginationItem 
-    pageNumber={2}
-    currentPage={testState.currentPage}
-    onPageChange={testState.setPage}
-    changePage={testState.changePage}/>
-  )
+    <PaginationItem
+      pageNumber={2}
+      currentPage={testState.currentPage}
+      onPageChange={testState.setPage}
+      changePage={testState.changePage}
+    />
+  );
   const secondPageButton = getByRole("button");
   userEvent.click(secondPageButton);
   expect(testState.currentPage).toBe(2);
-})
+});

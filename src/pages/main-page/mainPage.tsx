@@ -41,7 +41,7 @@ export const MainPage = (): JSX.Element => {
   // TO-DO fix sorter
   sorter(state.cards, state.sortParam, state.sortConfig);
   //  }, [sorter, state.cards, state.sortParam, state.sortConfig])
-  
+
   return (
     <>
       <section className="App-main__filters">
