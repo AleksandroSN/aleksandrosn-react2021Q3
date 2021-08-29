@@ -1,4 +1,4 @@
-import { PokemonBaseRequest, PokemonDetailProps } from "./interfaces";
+// import { PokemonBaseRequest, PokemonDetailProps } from "./interfaces";
 
 export const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
 

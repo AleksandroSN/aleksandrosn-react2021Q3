@@ -2,14 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 import { PokemonAllData, PokemonBaseRequest } from "../../api/interfaces";
 import { getData, getDetailData } from "./apiAsyncThunk";
 
-interface ApiReducerState {
+export interface ApiReducerState {
   req: PokemonBaseRequest | unknown;
   detailReq: PokemonAllData | unknown;
   isLoading: boolean;
   error: boolean | string;
 }
 
-const initialState: ApiReducerState = {
+export const initialState: ApiReducerState = {
   req: {},
   detailReq: {},
   isLoading: false,

@@ -2,7 +2,8 @@ import { FormEvent } from "react";
 import { PokemonDetailProps } from "../../api/interfaces";
 import { listFormInputs } from "../../utils/listInputs";
 import { listRadioButtons } from "../../utils/listRadioB";
-import { fullListSelects } from "../../utils/randomStats";
+import { listSelects } from "../../utils/listSelects";
+// import { fullListSelects } from "../../utils/randomStats";
 import { FormReducerHelper } from "./formReducerHelper";
 import "./forms.scss";
 import { Input } from "./inputs/input";
@@ -12,7 +13,7 @@ import { Select } from "./select/select";
 interface CreateFormProps {
   updateCards: (modState: PokemonDetailProps) => void;
 }
-const fullList = fullListSelects();
+// const fullList = fullListSelects();
 
 export const CreateForm = ({ updateCards }: CreateFormProps): JSX.Element => {
   const {
@@ -51,13 +52,13 @@ export const CreateForm = ({ updateCards }: CreateFormProps): JSX.Element => {
     }
   );
 
-  const stats = fullList.map(({ attrName, labelValue, randomValue }) => {
+  const stats = listSelects.map(({ attrName, labelValue, options }) => {
     return (
       <Select
         key={labelValue}
         labelValue={labelValue}
         attrName={attrName}
-        randomValue={randomValue}
+        options={options}
         updatePokemonStats={updatePokemonStats}
       />
     );

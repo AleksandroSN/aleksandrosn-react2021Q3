@@ -21,7 +21,7 @@ export const Input = ({
     <div className="App-main__container-form__input-wrapper">
       <label htmlFor={atrrValue}>
         <p className="App-main__container-form__input-name">
-          {label}{" "}
+          {label}
           {!state.errors[`${errorValue}`] && (
             <span className="App-main__container-form__input-span">
               {errorMesage}

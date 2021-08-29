@@ -7,7 +7,7 @@ import {
 export interface MainPageState {
   // cards: PokemonDetailProps[];
   cards: PokemonProps[];
-  cardsPromises: Promise<PokemonDetailProps>[];
+  // cardsPromises: Promise<PokemonDetailProps>[];
   // loader: boolean;
   paginationState: PokemonPagination;
   sortConfig: string;
@@ -34,7 +34,7 @@ export enum FormActions {
 
 export const initialMainPageState: MainPageState = {
   cards: [],
-  cardsPromises: [],
+  // cardsPromises: [],
   // loader: false,
   paginationState: {
     next: "",
@@ -80,11 +80,11 @@ export const MainPageReducer = (
           sortConfig: "DESC",
         },
       };
-    case FormActions.SET_CARDS_PROMISES:
-      return {
-        ...state,
-        ...{ cardsPromises: (action.payload as MainPageState).cardsPromises },
-      };
+    // case FormActions.SET_CARDS_PROMISES:
+    //   return {
+    //     ...state,
+    //     ...{ cardsPromises: (action.payload as MainPageState).cardsPromises },
+    //   };
     case FormActions.SET_CARDS:
       return {
         ...state,

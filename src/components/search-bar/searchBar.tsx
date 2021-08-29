@@ -1,4 +1,4 @@
-import { FormEvent, useRef } from "react";
+import { FormEvent, RefObject, useRef } from "react";
 import { MainPageState } from "../../pages/main-page/controller/mainPageReducer";
 import "./search-bar.scss";
 
@@ -14,12 +14,14 @@ export const SearchBar = ({
   searchPage,
   state,
 }: SearchBarProps): JSX.Element => {
-  const searchRef = useRef<HTMLInputElement>(null);
+  const searchRef: RefObject<HTMLInputElement> = useRef<HTMLInputElement>(null);
 
-  const onSubmit = async (ev: FormEvent<HTMLFormElement>) => {
+  const onSubmit = (
+    ev: FormEvent<HTMLFormElement>
+  ): Promise<void> | undefined => {
     ev.preventDefault();
-    const searchEl = searchRef.current?.value.toLowerCase() as string;
-
+    if (searchRef.current === null) return;
+    const searchEl = searchRef.current.value.toLowerCase();
     if (searchEl === "") {
       changePage(state.page);
     } else {

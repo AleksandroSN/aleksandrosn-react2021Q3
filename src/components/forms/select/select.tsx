@@ -7,9 +7,16 @@ interface SelectProps {
 export const Select = ({
   labelValue,
   attrName,
-  randomValue,
+  options,
   updatePokemonStats,
 }: FullListData & SelectProps): JSX.Element => {
+  const optionsList = options.map((option, i) => {
+    return (
+      <option key={option} value={`${i}`}>
+        {option}
+      </option>
+    );
+  });
   return (
     <label htmlFor={attrName}>
       {labelValue}
@@ -21,12 +28,7 @@ export const Select = ({
           updatePokemonStats(labelValue, ev.target.value);
         }}
       >
-        <option value={randomValue[0]}>{randomValue[0]}</option>
-        <option value={randomValue[1]}>{randomValue[1]}</option>
-        <option value={randomValue[2]}>{randomValue[2]}</option>
-        <option value={randomValue[3]}>{randomValue[3]}</option>
-        <option value={randomValue[4]}>{randomValue[4]}</option>
-        <option value={randomValue[5]}>{randomValue[5]}</option>
+        {optionsList}
       </select>
     </label>
   );

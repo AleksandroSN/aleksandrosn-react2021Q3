@@ -12,7 +12,7 @@ export interface PokemonData {
 // }
 
 export interface FullListData {
-  randomValue: number[];
+  options: string[];
   labelValue: string;
   attrName: string;
 }

@@ -10,17 +10,25 @@ interface FetchData {
 export const getDetailData = createAsyncThunk(
   "apiReducer/detailData",
   async (name: string) => {
-    const res = await fetch(`${BASE_URL}/${name}`);
-    const json = (await res.json()) as PokemonDetailProps;
-    return json;
+    try {
+      const res = await fetch(`${BASE_URL}/${name}`);
+      const json = (await res.json()) as PokemonDetailProps;
+      return json;
+    } catch (e) {
+      throw new Error(`${e}`);  
+    }
   }
 );
 
 export const getData = createAsyncThunk(
   "apiReducer/data",
   async ({ offset, limit }: FetchData) => {
-    const res = await fetch(`${BASE_URL}/?offset=${offset}&limit=${limit}`);
-    const json = (await res.json()) as PokemonBaseRequest;
-    return json;
+    try {
+      const res = await fetch(`${BASE_URL}/?offset=${offset}&limit=${limit}`);
+      const json = (await res.json()) as PokemonBaseRequest;
+      return json;
+    } catch (e) {
+      throw new Error(`${e}`);  
+    }
   }
 );

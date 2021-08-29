@@ -1,8 +1,11 @@
 import "@testing-library/jest-dom/extend-expect";
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Pagination } from "../src/components/pagination/pagination";
-import { activePage, PaginationItem } from "../src/utils/paginationHelper";
+import { Pagination } from "../../../src/components/pagination/pagination";
+import {
+  activePage,
+  PaginationItem,
+} from "../../../src/utils/paginationHelper";
 
 describe("active page test", () => {
   it("active page equal number page", () => {
