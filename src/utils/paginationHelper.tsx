@@ -20,6 +20,7 @@ interface PaginationItemProps {
   currentPage: number;
   onPageChange: (page: number) => void;
   changePage: (page: number) => Promise<void>;
+  setInfiniteScroll: (flag: boolean) => void;
 }
 
 export const PaginationItem = ({
@@ -27,12 +28,14 @@ export const PaginationItem = ({
   currentPage,
   onPageChange,
   changePage,
+  setInfiniteScroll,
 }: PaginationItemProps): JSX.Element => {
   return (
     <li className="pagination-item">
       <button
         className={activePage(pageNumber, currentPage)}
         onClick={() => {
+          setInfiniteScroll(false);
           onPageChange(pageNumber as number);
           changePage(pageNumber as number);
         }}

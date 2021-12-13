@@ -1,18 +1,16 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { loadStatus, useAppSelector } from "../../store/store";
 import { CardsContainer } from "../../components/cards-container/cards-container";
-import { Loader } from "../../components/loader/loader";
 import { Pagination } from "../../components/pagination/pagination";
 import { SearchBar } from "../../components/search-bar/searchBar";
 import { Sort } from "../../components/sorter/sort";
 import { LIMIT_PER_PAGE, OFFSET_PER_PAGE } from "../../utils/constants";
 import { MainPageReducerHelper } from "./controller/mainPageReducerHelper";
 import { getData } from "../../store/api/apiAsyncThunk";
+import { InfiniteScroll } from "../../components/infiniteScroll";
 
 export const MainPage = (): JSX.Element => {
   const dispatch = useDispatch();
-  const loaderStatus = useAppSelector(loadStatus);
 
   const {
     state,
@@ -25,6 +23,7 @@ export const MainPage = (): JSX.Element => {
     setPageSize,
     changePage,
     searchPage,
+    setInfiniteScroll,
   } = MainPageReducerHelper();
 
   // To-DO create custom useFetch
@@ -41,7 +40,6 @@ export const MainPage = (): JSX.Element => {
   // TO-DO fix sorter
   sorter(state.cards, state.sortParam, state.sortConfig);
   //  }, [sorter, state.cards, state.sortParam, state.sortConfig])
-
   return (
     <>
       <section className="App-main__filters">
@@ -75,15 +73,19 @@ export const MainPage = (): JSX.Element => {
           onPageChange={setPage}
           pageSize={state.pageSize}
           changePage={changePage}
+          setInfiniteScroll={setInfiniteScroll}
         />
       </section>
-      <section className="App-main__container">
-        {loaderStatus ? (
-          <Loader />
-        ) : (
+      <InfiniteScroll
+        pageNumber={state.page}
+        loadNewPage={changePage}
+        setNewPage={setPage}
+        setInfiniteScroll={setInfiniteScroll}
+      >
+        <section className="App-main__container">
           <CardsContainer state={state.cards} updateCards={addOneCard} />
-        )}
-      </section>
+        </section>
+      </InfiniteScroll>
     </>
   );
 };

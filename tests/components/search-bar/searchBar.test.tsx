@@ -17,6 +17,7 @@ const testState: MainPageState = {
   sortParam: null,
   page: 1,
   pageSize: 20,
+  infinityScroll: false,
 };
 
 describe("test Search bar component", () => {

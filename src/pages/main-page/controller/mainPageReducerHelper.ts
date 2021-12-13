@@ -1,6 +1,5 @@
 import { useCallback, useReducer } from "react";
 import { useDispatch } from "react-redux";
-// import { getDetailData } from "../../../api/api";
 import {
   PokemonBaseRequest,
   PokemonDetailProps,
@@ -19,13 +18,7 @@ import {
 
 interface FormReducerReturns {
   state: MainPageState;
-  // setCards: (arrCards: PokemonProps[]) => void;
   addOneCard: (newData: PokemonDetailProps) => void;
-  // setLoader: (flag: boolean) => void;
-  // setPaginationState: (next: string, previous: string, count: number) => void;
-  // setCardsPromises: (arrCardsPromises: Promise<PokemonDetailProps>[]) => void;
-  // addPromises: (pokeArr: PokemonDetailProps[]) => void;
-  // executePromises: () => void;
   updatePokData: () => void;
   sorter: (
     cards: PokemonProps[],
@@ -38,23 +31,31 @@ interface FormReducerReturns {
   setPageSize: (currentPageSize: number) => void;
   changePage: (page: number) => Promise<void>;
   searchPage: (searchElement: string) => Promise<void>;
+  setInfiniteScroll: (flag: boolean) => void;
 }
 
 export const MainPageReducerHelper = (): FormReducerReturns => {
   const [state, dispatch] = useReducer(MainPageReducer, initialMainPageState);
   const req = useAppSelector(baseReq);
-  // const detailRequest = useAppSelector(detailReq);
   const reduxDispatch = useDispatch();
 
-  const setCards = useCallback((arrCards: PokemonProps[]) => {
+  const setCards = (arrCards: PokemonProps[]) => {
     dispatch({
       type: FormActions.SET_CARDS,
       payload: {
         cards: arrCards,
       },
     });
-  }, []);
+  };
 
+  const addCards = (arrCards: PokemonProps[]) => {
+    dispatch({
+      type: FormActions.SET_CARDS,
+      payload: {
+        cards: [...state.cards, ...arrCards],
+      },
+    });
+  };
   const addOneCard = (newData: PokemonDetailProps) => {
     dispatch({
       type: FormActions.SET_CARDS,
@@ -63,15 +64,6 @@ export const MainPageReducerHelper = (): FormReducerReturns => {
       },
     });
   };
-
-  // const setLoader = useCallback((flag: boolean): void => {
-  //   dispatch({
-  //     type: FormActions.SET_LOADER,
-  //     payload: {
-  //       loader: flag,
-  //     },
-  //   });
-  // }, []);
 
   const setPaginationState = useCallback(
     (next: string, previous: string, count: number) => {
@@ -89,59 +81,24 @@ export const MainPageReducerHelper = (): FormReducerReturns => {
     []
   );
 
-  // const setCardsPromises = (
-  //   arrCardsPromises: Promise<PokemonDetailProps>[]
-  // ) => {
-  //   dispatch({
-  //     type: FormActions.SET_CARDS_PROMISES,
-  //     payload: {
-  //       cardsPromises: arrCardsPromises,
-  //     },
-  //   });
-  // };
-
-  // console.log(detailRequest);
-  // const addPromises = useCallback(
-  // (pokeArr: PokemonDetailProps[]) => {
-  // console.log(pokeArr);
-
-  // const tempArr: PokemonDetailProps[] = [];
-  // pokeArr.forEach(({ name }) => {
-  // const pokemonReq = getDetailData(name);
-  // console.log(pokemonReq);
-
-  // reduxDispatch(getDetailData(name));
-  // if ((detailRequest as PokemonDetailProps).id) {
-  // console.log(detailRequest);
-
-  // }
-  // tempArr.concat(detailRequest);
-  // });
-  // console.log(detailRequest);
-  // setCards(detailRequest);
-
-  // setCardsPromises(tempArr);
-  // },
-  // [reduxDispatch]
-  // );
-
-  const updatePokData = useCallback(() => {
-    if ((req as PokemonBaseRequest).results) {
+  const updatePokData = useCallback(async () => {
+    if (((await req) as PokemonBaseRequest).results) {
       const { count, next, previous, results } = req as PokemonBaseRequest;
       // BLOCK RENDER if elem in arr > 30 ! temp
       if (results.length > 30) {
         return;
       }
-
+      const renderArr = [...results];
       setPaginationState(next, previous, count);
-      // addPromises(results);
-      setCards(results);
+      if (state.infinityScroll) {
+        addCards(renderArr);
+      } else {
+        setCards(renderArr);
+      }
+      renderArr.length = 0;
     }
-  }, [req, setPaginationState, setCards]);
-
-  // const executePromises = useCallback(() => {
-  //   Promise.all(state.cardsPromises).then((x) => setCards(x));
-  // }, [setCards, state.cardsPromises]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [req, state.infinityScroll]);
 
   const sorter = (
     cards: PokemonProps[],
@@ -220,7 +177,7 @@ export const MainPageReducerHelper = (): FormReducerReturns => {
     reduxDispatch(
       getData({ offset: OFFSET_PER_PAGE, limit: MAX_LIMIT_PER_PAGE })
     );
-    if ((req as PokemonBaseRequest).results) {
+    if (((await req) as PokemonBaseRequest).results) {
       const { results, next, previous } = req as PokemonBaseRequest;
       const filteredState = results.filter((pokemon) =>
         pokemon.name.toLowerCase().includes(searchElement)
@@ -228,19 +185,22 @@ export const MainPageReducerHelper = (): FormReducerReturns => {
 
       setPaginationState(next, previous, filteredState.length);
       setCards(filteredState);
-      // addPromises(filteredState);
     }
   };
 
+  const setInfiniteScroll = (flag: boolean) => {
+    dispatch({
+      type: FormActions.SET_INFINITY_SCROLL,
+      payload: {
+        infinityScroll: flag,
+      },
+    });
+  };
+
   return {
-    // setCards,
     addOneCard,
-    // setLoader,
-    // setPaginationState,
-    // setCardsPromises,
-    // addPromises,
     updatePokData,
-    // executePromises,
+    setInfiniteScroll,
     sorter,
     sortBy,
     totalCountHelper,

@@ -1,3 +1,4 @@
+import React from "react";
 import "./cards.scss";
 import "./cards-preview.scss";
 
@@ -11,7 +12,7 @@ export const CardsPreview: React.FC<CardsPreviewProps> = ({
   url,
 }: CardsPreviewProps) => {
   const regEx = /(\d+)(?!.*\d)/g;
-  const imgIdx = url.substr(url.search(regEx)).slice(0, -1);
+  const imgIdx = url.substring(url.search(regEx)).slice(0, -1);
 
   return (
     <div className="App-main__container-card--wrapper">
@@ -26,6 +27,7 @@ export const CardsPreview: React.FC<CardsPreviewProps> = ({
           </div>
           <div className="App-main__container-card-text">
             <p className="App-main__container-card-name">{name}</p>
+            <p className="App-main__container-card-id">#{imgIdx}</p>
           </div>
         </div>
       </div>

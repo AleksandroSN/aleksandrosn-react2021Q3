@@ -9,6 +9,7 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
-export const loadStatus = (state: RootState) => state.isLoading;
-export const baseReq = (state: RootState) => state.req;
-export const detailReq = (state: RootState) => state.detailReq;
+export const loadStatus = (state: RootState): boolean => state.isLoading;
+export const loadCompleteStatus = (state: RootState): boolean => state.loadComplete;
+export const baseReq = (state: RootState): unknown => state.req;
+export const detailReq = (state: RootState): unknown => state.detailReq;

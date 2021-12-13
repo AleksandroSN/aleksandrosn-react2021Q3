@@ -1,19 +1,13 @@
-import {
-  PokemonDetailProps,
-  PokemonPagination,
-  PokemonProps,
-} from "../../../api/interfaces";
+import { PokemonPagination, PokemonProps } from "../../../api/interfaces";
 
 export interface MainPageState {
-  // cards: PokemonDetailProps[];
   cards: PokemonProps[];
-  // cardsPromises: Promise<PokemonDetailProps>[];
-  // loader: boolean;
   paginationState: PokemonPagination;
   sortConfig: string;
   sortParam: keyof PokemonProps | null;
   page: number;
   pageSize: number;
+  infinityScroll: boolean;
 }
 
 export interface ActionTypes {
@@ -24,27 +18,26 @@ export interface ActionTypes {
 export enum FormActions {
   SET_CARDS = "setCards",
   SET_CARDS_PROMISES = "setCardsPromises",
-  // SET_LOADER = "setLoader",
   SET_PAGINATION_STATE = "setPaginationState",
   SET_SORT_ASC = "setSortOnAsc",
   SET_SORT_DESC = "setSortOnDesc",
   SET_PAGE = "setPage",
   SET_PAGE_SIZE = "setPageSize",
+  SET_INFINITY_SCROLL = "setInfinityScroll",
 }
 
 export const initialMainPageState: MainPageState = {
   cards: [],
-  // cardsPromises: [],
-  // loader: false,
+  infinityScroll: false,
+  page: 1,
+  pageSize: 20,
   paginationState: {
     next: "",
     previous: "",
     count: 0,
   },
-  sortConfig: "ASC",
   sortParam: null,
-  page: 1,
-  pageSize: 20,
+  sortConfig: "ASC",
 };
 
 export const MainPageReducer = (
@@ -52,11 +45,6 @@ export const MainPageReducer = (
   action: ActionTypes
 ): MainPageState => {
   switch (action.type) {
-    // case FormActions.SET_LOADER:
-    //   return {
-    //     ...state,
-    //     ...{ loader: (action.payload as MainPageState).loader },
-    //   };
     case FormActions.SET_PAGINATION_STATE:
       return {
         ...state,
@@ -80,11 +68,11 @@ export const MainPageReducer = (
           sortConfig: "DESC",
         },
       };
-    // case FormActions.SET_CARDS_PROMISES:
-    //   return {
-    //     ...state,
-    //     ...{ cardsPromises: (action.payload as MainPageState).cardsPromises },
-    //   };
+    case FormActions.SET_INFINITY_SCROLL:
+      return {
+        ...state,
+        ...{ infinityScroll: (action.payload as MainPageState).infinityScroll },
+      };
     case FormActions.SET_CARDS:
       return {
         ...state,

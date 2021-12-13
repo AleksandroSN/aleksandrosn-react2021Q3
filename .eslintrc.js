@@ -23,6 +23,7 @@ module.exports = {
     'react/no-array-index-key': 'off',
     'react/require-default-props': 'off',
     'react/jsx-props-no-spreading': 'off',
+    "react/prop-types": "off",
     'import/prefer-default-export': 'off',
     "jsx-a11y/label-has-associated-control": ["error", {
       "required": {

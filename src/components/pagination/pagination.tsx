@@ -5,6 +5,7 @@ import { PaginationDots, PaginationItem } from "../../utils/paginationHelper";
 interface PaginationProps {
   changePage: (page: number) => Promise<void>;
   onPageChange: (page: number) => void;
+  setInfiniteScroll: (flag: boolean) => void;
   totalCount: number;
   siblingCount?: number;
   currentPage: number;
@@ -18,6 +19,7 @@ export const Pagination = ({
   pageSize,
   onPageChange,
   changePage,
+  setInfiniteScroll,
 }: PaginationProps): JSX.Element | null => {
   const paginationRange = usePagination({
     currentPage,
@@ -33,11 +35,13 @@ export const Pagination = ({
   // TO-DO перенести или объединить ?
 
   const onNext = () => {
+    setInfiniteScroll(false);
     onPageChange(currentPage + 1);
     changePage(currentPage + 1);
   };
 
   const onPrevious = () => {
+    setInfiniteScroll(false);
     onPageChange(currentPage - 1);
     changePage(currentPage - 1);
   };
@@ -56,6 +60,7 @@ export const Pagination = ({
         currentPage={currentPage}
         onPageChange={onPageChange}
         changePage={changePage}
+        setInfiniteScroll={setInfiniteScroll}
       />
     );
   });
