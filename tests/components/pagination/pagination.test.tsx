@@ -8,12 +8,14 @@ const testState = {
   pageSize: 20,
   currentPage: 5,
   setPage(page: number) {
+    // eslint-disable-next-line no-return-assign
     return (testState.currentPage = page);
   },
 };
 
 describe("Tests for Pagination component", () => {
   const mockChangePage = jest.fn();
+  const setInfiniteScroll = jest.fn();
   const { totalCount, pageSize, currentPage, setPage } = testState;
   it("Incr and decr work ?", () => {
     const { getByText } = render(
@@ -24,6 +26,7 @@ describe("Tests for Pagination component", () => {
         siblingCount={2}
         onPageChange={setPage}
         changePage={mockChangePage}
+        setInfiniteScroll={setInfiniteScroll}
       />
     );
     const prevButton = getByText(/prev/i);

@@ -45,5 +45,13 @@
   &__title {
     flex: 100%;
     text-align: center;
+
+    @media screen and (max-width: 768px) {
+      font-size: 1.8rem; 
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    gap: 20px
   }
 }

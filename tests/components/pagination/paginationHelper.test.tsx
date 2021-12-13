@@ -28,12 +28,15 @@ const testState = {
   pageSize: 20,
   currentPage: 1,
   setPage(page: number) {
+    // eslint-disable-next-line no-return-assign
     return (testState.currentPage = page);
   },
   async changePage(page: number) {
     onChangePage(page);
   },
 };
+
+const setInfiniteScroll = jest.fn();
 
 test("check render dots", () => {
   const { getAllByText } = render(
@@ -43,6 +46,7 @@ test("check render dots", () => {
       onPageChange={testState.setPage}
       pageSize={testState.pageSize}
       changePage={testState.changePage}
+      setInfiniteScroll={setInfiniteScroll}
     />
   );
   const dots = getAllByText(/.../i);
@@ -58,6 +62,7 @@ test("check render page", () => {
       currentPage={testState.currentPage}
       onPageChange={testState.setPage}
       changePage={testState.changePage}
+      setInfiniteScroll={setInfiniteScroll}
     />
   );
   const secondPageButton = getByRole("button");

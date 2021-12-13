@@ -23,18 +23,29 @@
       gap: 20px;
       justify-content: center;
       padding: 3rem 0;
+
+      @media screen and (max-width: 768px) {
+        flex-wrap: wrap;
+        padding: 2rem 0.5rem 0 0;
+      }
     }
 
     &__pagination {
       display: flex;
+      flex-wrap: wrap;
       gap: 50px;
       justify-content: center;
       align-items: center;
 
       &__list {
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         gap: 10px;
+
+        @media screen and (max-width: 768px){
+          gap: 5px;
+        }
       }
 
       &__field-size {
@@ -49,6 +60,10 @@
           outline: none;
           cursor: pointer;
         }
+      }
+
+      @media screen and (max-width: 768px){
+        gap: 5px;
       }
     }
   }

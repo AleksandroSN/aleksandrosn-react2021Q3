@@ -7,6 +7,7 @@
   border-radius: 10px;
   margin-bottom: 100px;
   padding: 10px;
+  text-align: center;
 
   &__input {
     margin-left: 15px;
@@ -80,6 +81,19 @@
 
     & input[type="radio"]:checked + label {
       background-color: gold;
+    }
+  }
+
+  &__btn {
+    border-radius: 9999px;
+    border: 2px solid #24ef43;
+    cursor: pointer;
+    padding: 10px 30px;
+    font-size: 1.2rem;
+
+    &:disabled {
+      background-color: rgba($color: #808080, $alpha: 0.3);
+      border: 2px solid #ff0000;
     }
   }
 }

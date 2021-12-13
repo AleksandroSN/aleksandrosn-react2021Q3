@@ -48,5 +48,16 @@
     &.hide {
       display: none;
     }
+
+    @media screen and (max-width: 768px) {
+      position: static;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    flex: 100%;
+    padding: 0 1rem 1rem;
+    gap: 20px;
+    align-items: flex-start;
   }
 }

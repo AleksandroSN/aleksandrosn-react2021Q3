@@ -122,7 +122,11 @@ export const CreateForm = ({ updateCards }: CreateFormProps): JSX.Element => {
           />
         </label>
       </div>
-      <button type="submit" disabled={!checkValid()}>
+      <button
+        type="submit"
+        disabled={!checkValid()}
+        className="App-main__container-form__btn"
+      >
         Create
       </button>
     </form>
