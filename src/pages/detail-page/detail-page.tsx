@@ -1,18 +1,17 @@
-import { useEffect, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { PokemonAllData } from "../../api/interfaces";
-import { CardsMarkup } from "../../components/cards/cards-markup";
-import "./detail-page.scss";
+import { CardsMarkup, Loader } from "../../components";
 import { detailReq, loadStatus, useAppSelector } from "../../store/store";
 import { getDetailData } from "../../store/api/apiAsyncThunk";
-import { Loader } from "../../components/loader/loader";
+import "./detail-page.scss";
 
 interface ParamsDetailPage {
   name: string;
 }
 
-export const DetailPage = () => {
+export const DetailPage: FunctionComponent = (): JSX.Element => {
   const [pokemonDetail, setPokemonDetail] = useState<PokemonAllData | null>(
     null
   );

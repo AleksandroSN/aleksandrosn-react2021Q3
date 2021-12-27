@@ -1,3 +1,4 @@
+import { FunctionComponent } from "react";
 import { PokemonData } from "../../api/interfaces";
 import {
   CardBody,
@@ -12,7 +13,7 @@ import {
   CardWrapper,
 } from "./styled-cards";
 
-export const CardsMarkup: React.FC<PokemonData> = ({
+export const CardsMarkup: FunctionComponent<PokemonData> = ({
   pokemonImg,
   pokemonNumber,
   pokemonName,

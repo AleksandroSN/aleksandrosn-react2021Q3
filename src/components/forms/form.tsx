@@ -1,19 +1,11 @@
 import { FormEvent } from "react";
-import { PokemonDetailProps } from "../../api/interfaces";
-import { listFormInputs } from "../../utils/listInputs";
-import { listRadioButtons } from "../../utils/listRadioB";
-import { listSelects } from "../../utils/listSelects";
-// import { fullListSelects } from "../../utils/randomStats";
+import { listFormInputs, listRadioButtons, listSelects } from "../../utils";
 import { FormReducerHelper } from "./formReducerHelper";
 import "./forms.scss";
 import { Input } from "./inputs/input";
 import { RadioButton } from "./radio/radio";
 import { Select } from "./select/select";
-
-interface CreateFormProps {
-  updateCards: (modState: PokemonDetailProps) => void;
-}
-// const fullList = fullListSelects();
+import { CreateFormProps } from "./types";
 
 export const CreateForm = ({ updateCards }: CreateFormProps): JSX.Element => {
   const {

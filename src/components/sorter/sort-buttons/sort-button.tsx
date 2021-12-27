@@ -1,20 +1,18 @@
-import { Order } from "../../../api/types";
-import { PropsListSortButtons } from "../../../utils/listSortButtons";
-
-interface SortButtonProps {
-  sortBy: (order: Order, param: string) => void;
-  sortButton: PropsListSortButtons;
-}
+import {
+  SortOptionsButton,
+  SortOptionsItem,
+  SortOptionsTitle,
+} from "./styled-sort-button";
+import { SortButtonProps } from "./types";
 
 export const SortButton = ({
   sortBy,
   sortButton,
 }: SortButtonProps): JSX.Element => {
   return (
-    <li className="App-sort__options-item">
-      <div className="App-sort__options-title">{sortButton.sortBy}</div>
-      <button
-        className="App-sort__options-button button--asc"
+    <SortOptionsItem>
+      <SortOptionsTitle>{sortButton.sortBy}</SortOptionsTitle>
+      <SortOptionsButton
         data-testid="sort-button-asc"
         type="button"
         onClick={() => {
@@ -22,9 +20,8 @@ export const SortButton = ({
         }}
       >
         <img src="./icons/asc.png" alt="sort asc icon" />
-      </button>
-      <button
-        className="App-sort__options-button button--desc"
+      </SortOptionsButton>
+      <SortOptionsButton
         data-testid="sort-button-desc"
         type="button"
         onClick={() => {
@@ -32,7 +29,7 @@ export const SortButton = ({
         }}
       >
         <img src="./icons/desc.png" alt="sort desc icon" />
-      </button>
-    </li>
+      </SortOptionsButton>
+    </SortOptionsItem>
   );
 };

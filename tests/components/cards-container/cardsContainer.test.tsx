@@ -4,8 +4,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { PokemonDetailProps } from "../../../src/api/interfaces";
 import {
   CardsContainer,
-  CardsContainerProps,
-} from "../../../src/components/cards-container/cards-container";
+  CardsContainerProps
+} from "../../../src/components/cards-container";
 
 const testDataForState: CardsContainerProps = {
   state: [

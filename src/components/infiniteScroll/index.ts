@@ -1,1 +1,1 @@
-export { InfiniteScroll } from './InfiniteScroll';
+export { InfiniteScroll } from "./InfiniteScroll";

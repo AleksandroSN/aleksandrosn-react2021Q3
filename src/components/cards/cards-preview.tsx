@@ -1,3 +1,4 @@
+import { FunctionComponent } from "react";
 import {
   CardBodyPreview,
   CardContainerPreview,
@@ -8,13 +9,9 @@ import {
   CardTextContainer,
   CardWrapper,
 } from "./styled-cards";
+import { CardsPreviewProps } from "./types";
 
-interface CardsPreviewProps {
-  name: string;
-  url: string;
-}
-
-export const CardsPreview: React.FC<CardsPreviewProps> = ({
+export const CardsPreview: FunctionComponent<CardsPreviewProps> = ({
   name,
   url,
 }: CardsPreviewProps) => {

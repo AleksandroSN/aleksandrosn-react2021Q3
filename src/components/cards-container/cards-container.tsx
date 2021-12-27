@@ -1,13 +1,8 @@
 import { NavLink } from "react-router-dom";
-import { PokemonDetailProps, PokemonProps } from "../../api/interfaces";
-import { CardsPreview } from "../cards/cards-preview";
-import { CreateForm } from "../forms/form";
+import { CardsPreview } from "../cards";
+import { CreateForm } from "../forms";
 import { StyledCardsContainer } from "./styled-cards-container";
-
-export interface CardsContainerProps {
-  state: PokemonProps[];
-  updateCards: (modState: PokemonDetailProps) => void;
-}
+import { CardsContainerProps } from "./types";
 
 export const CardsContainer = ({
   state,

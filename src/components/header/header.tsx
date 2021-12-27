@@ -1,5 +1,4 @@
 import { FunctionComponent } from "react";
-import { listRoutes } from "../routes/listRoutes";
 import {
   HeaderLogo,
   HeaderLogoImg,
@@ -12,8 +11,13 @@ import {
   HeaderWrapper,
 } from "./styled-header";
 
-export const Header: FunctionComponent = () => {
-  const firstTwoRoute = listRoutes.slice(0, 2);
+// TEMP
+const firstTwoRoute = [
+  { path: "/", name: "Home" },
+  { path: "/about", name: "About" },
+];
+
+export const Header: FunctionComponent = (): JSX.Element => {
   const NavLinkList = firstTwoRoute.map((route) => {
     return (
       <HeaderNavListItem key={route.name}>

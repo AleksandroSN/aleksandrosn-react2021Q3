@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { FunctionComponent, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { CardsContainer } from "../../components/cards-container/cards-container";
 import { Pagination } from "../../components/pagination/pagination";
@@ -9,7 +9,7 @@ import { MainPageReducerHelper } from "./controller/mainPageReducerHelper";
 import { getData } from "../../store/api/apiAsyncThunk";
 import { InfiniteScroll } from "../../components/infiniteScroll";
 
-export const MainPage = (): JSX.Element => {
+export const MainPage: FunctionComponent = (): JSX.Element => {
   const dispatch = useDispatch();
 
   const {

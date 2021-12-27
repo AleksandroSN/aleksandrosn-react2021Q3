@@ -1,16 +1,8 @@
-import { DOTS, usePagination } from "./usePagination";
+import { usePagination } from "./usePagination";
 import "./pagination.scss";
 import { PaginationDots, PaginationItem } from "../../utils/paginationHelper";
-
-interface PaginationProps {
-  changePage: (page: number) => Promise<void>;
-  onPageChange: (page: number) => void;
-  setInfiniteScroll: (flag: boolean) => void;
-  totalCount: number;
-  siblingCount?: number;
-  currentPage: number;
-  pageSize: number;
-}
+import { PaginationProps } from "./types";
+import { DOTS } from "../../utils/constants";
 
 export const Pagination = ({
   totalCount,

@@ -1,11 +1,15 @@
 import { FormEvent, RefObject, useRef } from "react";
 import { MainPageState } from "../../pages/main-page/controller/mainPageReducer";
-import "./search-bar.scss";
+import {
+  SearchBarBtnSbmt,
+  SearchBarForm,
+  SearchBarInput,
+  SearchBarLabel,
+} from "./styled-search-bar";
 
 interface SearchBarProps {
   changePage: (page: number) => Promise<void>;
   searchPage: (searchElement: string) => Promise<void>;
-  // searchPage: (searchElement: string) => void
   state: MainPageState;
 }
 
@@ -30,20 +34,17 @@ export const SearchBar = ({
   };
 
   return (
-    <form className="App-searchBar" onSubmit={(ev) => onSubmit(ev)}>
-      <label htmlFor="searchBar" className="App-searchBar__label">
-        <input
+    <SearchBarForm onSubmit={(ev) => onSubmit(ev)}>
+      <SearchBarLabel htmlFor="searchBar">
+        <SearchBarInput
           ref={searchRef}
           type="text"
           name="searchBar"
           id="searchBar"
-          className="App-searchBar__input"
           placeholder="Search pokemon...."
         />
-      </label>
-      <button className="App-searchBar__button" type="submit">
-        Search
-      </button>
-    </form>
+      </SearchBarLabel>
+      <SearchBarBtnSbmt type="submit">Search</SearchBarBtnSbmt>
+    </SearchBarForm>
   );
 };

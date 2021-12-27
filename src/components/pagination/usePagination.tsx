@@ -1,18 +1,6 @@
 import { useMemo } from "react";
-
-interface PaginationHookProps {
-  currentPage: number;
-  totalCount: number;
-  pageSize: number;
-  siblingCount: number;
-}
-
-const range = (start: number, end: number) => {
-  const length = end - start + 1;
-  return Array.from({ length }, (x, i) => i + start);
-};
-
-export const DOTS = "...";
+import { DOTS, range } from "../../utils";
+import { PaginationHookProps } from "./types";
 
 export const usePagination = ({
   currentPage,

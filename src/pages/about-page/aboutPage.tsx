@@ -1,6 +1,7 @@
+import { FunctionComponent } from "react";
 import "./about-page.scss";
 
-export const AboutPage: React.FC = () => {
+export const AboutPage: FunctionComponent = (): JSX.Element => {
   return (
     <>
       <div className="App-main__about-page">
