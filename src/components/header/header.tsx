@@ -1,37 +1,41 @@
-import "./header.scss";
-import { NavLink } from "react-router-dom";
+import { FunctionComponent } from "react";
 import { listRoutes } from "../routes/listRoutes";
+import {
+  HeaderLogo,
+  HeaderLogoImg,
+  HeaderLogoLink,
+  HeaderNav,
+  HeaderNavList,
+  HeaderNavListItem,
+  HeaderNavListItemLink,
+  HeaderTitle,
+  HeaderWrapper,
+} from "./styled-header";
 
-export const Header: React.FC = () => {
+export const Header: FunctionComponent = () => {
   const firstTwoRoute = listRoutes.slice(0, 2);
   const NavLinkList = firstTwoRoute.map((route) => {
     return (
-      <li key={route.name} className="App-header__nav-item">
-        <NavLink
-          key={route.path}
-          className="App-header__nav-link"
-          activeClassName="App-header__nav-link--active"
-          to={route.path}
-          exact
-        >
+      <HeaderNavListItem key={route.name}>
+        <HeaderNavListItemLink key={route.path} to={route.path} exact>
           {route.name}
-        </NavLink>
-      </li>
+        </HeaderNavListItemLink>
+      </HeaderNavListItem>
     );
   });
   return (
     <>
-      <header className="App-header">
-        <div className="App-header__logo">
-          <a href="/" className="App-header__logo-link">
-            <img className="App-header__logo-img" src="./logo.svg" alt="logo" />
-          </a>
-        </div>
-        <nav className="App-header__nav">
-          <ul className="App-header__nav-list">{NavLinkList}</ul>
-        </nav>
-        <h1 className="App-header__title">React.Pokemon</h1>
-      </header>
+      <HeaderWrapper>
+        <HeaderLogo>
+          <HeaderLogoLink to="/">
+            <HeaderLogoImg src="./logo.svg" alt="logo" />
+          </HeaderLogoLink>
+        </HeaderLogo>
+        <HeaderNav>
+          <HeaderNavList>{NavLinkList}</HeaderNavList>
+        </HeaderNav>
+        <HeaderTitle>React.Pokemon</HeaderTitle>
+      </HeaderWrapper>
     </>
   );
 };
