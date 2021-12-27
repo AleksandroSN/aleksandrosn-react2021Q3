@@ -82,9 +82,7 @@ export const MainPage = (): JSX.Element => {
         setNewPage={setPage}
         setInfiniteScroll={setInfiniteScroll}
       >
-        <section className="App-main__container">
-          <CardsContainer state={state.cards} updateCards={addOneCard} />
-        </section>
+        <CardsContainer state={state.cards} updateCards={addOneCard} />
       </InfiniteScroll>
     </>
   );

@@ -1,4 +1,16 @@
 import { PokemonData } from "../../api/interfaces";
+import {
+  CardBody,
+  CardContainer,
+  CardId,
+  CardImg,
+  CardImgBox,
+  CardName,
+  CardStats,
+  CardTextContainer,
+  CardType,
+  CardWrapper,
+} from "./styled-cards";
 
 export const CardsMarkup: React.FC<PokemonData> = ({
   pokemonImg,
@@ -21,24 +33,23 @@ export const CardsMarkup: React.FC<PokemonData> = ({
   });
 
   return (
-    <div className="App-main__container-card--wrapper">
-      <div className="App-main__container-card">
-        <div className="App-main__container-card--body">
-          <div className="App-main__container-card-imgbox">
-            <img
+    <CardWrapper>
+      <CardContainer>
+        <CardBody>
+          <CardImgBox>
+            <CardImg
               src={`https://cdn.traction.one/pokedex/pokemon/${pokemonImg}.png`}
               alt={`pokemon ${pokemonNumber}`}
-              className="App-main__container-card-img"
             />
-          </div>
-          <div className="App-main__container-card-text">
-            <p className="App-main__container-card-id">#{pokemonNumber}</p>
-            <p className="App-main__container-card-name">{pokemonName}</p>
-            <p className="App-main__container-card-type">{types}</p>
-            <div className="App-main__container-card-stats">{stats}</div>
-          </div>
-        </div>
-      </div>
-    </div>
+          </CardImgBox>
+          <CardTextContainer>
+            <CardId>#{pokemonNumber}</CardId>
+            <CardName>{pokemonName}</CardName>
+            <CardType>{types}</CardType>
+            <CardStats>{stats}</CardStats>
+          </CardTextContainer>
+        </CardBody>
+      </CardContainer>
+    </CardWrapper>
   );
 };

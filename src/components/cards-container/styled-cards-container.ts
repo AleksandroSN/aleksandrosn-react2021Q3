@@ -1,4 +1,6 @@
-.App-main__container {
+import styled from "styled-components";
+
+export const StyledCardsContainer = styled.section`
   position: relative;
   display: grid;
   grid-template-columns: repeat(3, minmax(250px, 1fr));
@@ -18,4 +20,4 @@
   @media screen and (max-width: 540px) {
     gap: 10px;
   }
-}
+`;

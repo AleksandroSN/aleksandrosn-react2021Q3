@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { PokemonDetailProps, PokemonProps } from "../../api/interfaces";
 import { CardsPreview } from "../cards/cards-preview";
 import { CreateForm } from "../forms/form";
-import "./cards-container.scss";
+import { StyledCardsContainer } from "./styled-cards-container";
 
 export interface CardsContainerProps {
   state: PokemonProps[];
@@ -16,7 +16,7 @@ export const CardsContainer = ({
   const cardsArr = state.map((card) => (
     <NavLink
       key={card.name}
-      className="App-main__container-card--link"
+      className="link_to_detail"
       to={`/details/${card.name}`}
     >
       <CardsPreview key={card.name} name={card.name} url={card.url} />
@@ -24,9 +24,9 @@ export const CardsContainer = ({
   ));
 
   return (
-    <>
+    <StyledCardsContainer>
       <CreateForm updateCards={updateCards} />
       {cardsArr}
-    </>
+    </StyledCardsContainer>
   );
 };
