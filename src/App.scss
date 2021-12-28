@@ -4,10 +4,6 @@
   flex-direction: column;
   align-items: center;
 
-  &-header {
-    margin-top: 1rem;
-  }
-
   &-main {
     width: 70%;
     margin: 1rem auto 0;
@@ -30,17 +26,6 @@
       }
     }
   }
-}
-
-img {
-  height: auto;
-  width: 100%;
-}
-
-button {
-  background-color: transparent;
-  border-width: 0;
-  cursor: pointer;
 }
 
 .App-main__anime-page {

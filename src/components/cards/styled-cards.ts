@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { generateGrad } from "../../utils/colorGenerator";
+import { StyledCardImgProps } from "./types";
 
 export const CardWrapper = styled.div`
   position: relative;
@@ -49,13 +50,9 @@ export const CardImgBox = styled(CardImgBoxPreview)`
   transform: translate(-50%, -50%);
 `;
 
-export const CardImg = styled.img`
-  max-width: 200px;
+export const CardImg = styled.img<StyledCardImgProps>`
+  ${(props) => (props.prewiew ? `max-width: 300px` : `max-width: 200px;`)};
   filter: drop-shadow(4px 8px 3px rgba(0, 0, 0, 0.7));
-`;
-
-export const CardImgPreview = styled(CardImg)`
-  max-width: 300px;
 `;
 
 export const CardTextContainer = styled.div`

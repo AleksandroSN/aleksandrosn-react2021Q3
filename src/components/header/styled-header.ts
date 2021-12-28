@@ -7,6 +7,7 @@ export const HeaderWrapper = styled.header`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  margin-top: 1rem;
 
   @media screen and (max-width: 768px) {
     gap: 20px;

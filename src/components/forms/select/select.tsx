@@ -1,8 +1,6 @@
 import { FullListData } from "../../../api/interfaces";
-
-interface SelectProps {
-  updatePokemonStats: (labelValue: string, value: string) => void;
-}
+import { FormOptions } from "./styled-select";
+import { SelectProps } from "./types";
 
 export const Select = ({
   labelValue,
@@ -20,16 +18,15 @@ export const Select = ({
   return (
     <label htmlFor={attrName}>
       {labelValue}
-      <select
+      <FormOptions
         name={attrName}
         id={attrName}
-        className="App-main__container-form__options"
         onChange={(ev) => {
           updatePokemonStats(labelValue, ev.target.value);
         }}
       >
         {optionsList}
-      </select>
+      </FormOptions>
     </label>
   );
 };

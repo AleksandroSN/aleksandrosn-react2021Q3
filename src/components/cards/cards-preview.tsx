@@ -4,7 +4,7 @@ import {
   CardContainerPreview,
   CardId,
   CardImgBoxPreview,
-  CardImgPreview,
+  CardImg,
   CardName,
   CardTextContainer,
   CardWrapper,
@@ -23,7 +23,8 @@ export const CardsPreview: FunctionComponent<CardsPreviewProps> = ({
       <CardContainerPreview>
         <CardBodyPreview>
           <CardImgBoxPreview>
-            <CardImgPreview
+            <CardImg
+              prewiew
               src={`https://cdn.traction.one/pokedex/pokemon/${imgIdx}.png`}
               alt={`pokemon ${imgIdx}`}
             />

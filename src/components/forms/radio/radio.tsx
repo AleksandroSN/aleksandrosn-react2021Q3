@@ -1,9 +1,4 @@
-interface RadioButtonProps {
-  name: string;
-  id: string;
-  label: string;
-  updateType: (inputvalue: string) => void;
-}
+import { RadioButtonProps } from "./types";
 
 export const RadioButton = ({
   name,

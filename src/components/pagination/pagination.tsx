@@ -1,5 +1,4 @@
 import { usePagination } from "./usePagination";
-// import "./pagination.scss";
 import { DOTS } from "../../utils";
 import { PaginationProps } from "./types";
 import {

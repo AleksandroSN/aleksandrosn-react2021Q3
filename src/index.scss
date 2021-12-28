@@ -1,1 +1,12 @@
 @import "./style/base/normalize";
+
+img {
+  height: auto;
+  width: 100%;
+}
+
+button {
+  background-color: transparent;
+  border-width: 0;
+  cursor: pointer;
+}

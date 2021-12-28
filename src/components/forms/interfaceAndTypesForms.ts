@@ -3,7 +3,6 @@ export interface InputStringProps {
   type: string;
   placeholder: string;
   atrrValue: string;
-  nameClass: string;
   errorValue: string;
   errorMesage: string;
 }

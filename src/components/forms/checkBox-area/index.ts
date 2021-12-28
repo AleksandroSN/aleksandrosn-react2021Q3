@@ -1,0 +1,1 @@
+export { CheckBoxArea } from "./checkBoxArea";
