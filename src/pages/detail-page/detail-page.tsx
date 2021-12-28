@@ -5,7 +5,11 @@ import { PokemonAllData } from "../../api/interfaces";
 import { CardsMarkup, Loader } from "../../components";
 import { detailReq, loadStatus, useAppSelector } from "../../store/store";
 import { getDetailData } from "../../store/api/apiAsyncThunk";
-import "./detail-page.scss";
+import {
+  DetailPageWrapper,
+  DetailPageTextContainer,
+  DetailPageText,
+} from "./styled-detail-page";
 
 interface ParamsDetailPage {
   name: string;
@@ -32,7 +36,7 @@ export const DetailPage: FunctionComponent = (): JSX.Element => {
 
   return (
     <>
-      <div className="App-main__detail-page">
+      <DetailPageWrapper>
         {isLoading ? (
           <Loader />
         ) : (
@@ -47,15 +51,11 @@ export const DetailPage: FunctionComponent = (): JSX.Element => {
             />
           )
         )}
-        <div>
-          <p className="App-main__detail-page__text">
-            heigth: {pokemonDetail?.height}
-          </p>
-          <p className="App-main__detail-page__text">
-            weigth: {pokemonDetail?.weight}
-          </p>
-        </div>
-      </div>
+        <DetailPageTextContainer>
+          <DetailPageText>heigth: {pokemonDetail?.height}</DetailPageText>
+          <DetailPageText>weigth: {pokemonDetail?.weight}</DetailPageText>
+        </DetailPageTextContainer>
+      </DetailPageWrapper>
     </>
   );
 };

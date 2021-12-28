@@ -1,12 +1,12 @@
 import { FunctionComponent } from "react";
-import "./about-page.scss";
+import { AboutPageWrapper } from "./styled-about-page";
 
 export const AboutPage: FunctionComponent = (): JSX.Element => {
   return (
     <>
-      <div className="App-main__about-page">
+      <AboutPageWrapper>
         <h2>About Page</h2>
-      </div>
+      </AboutPageWrapper>
     </>
   );
 };
