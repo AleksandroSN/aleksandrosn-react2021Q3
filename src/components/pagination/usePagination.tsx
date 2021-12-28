@@ -1,5 +1,6 @@
 import { useMemo } from "react";
-import { DOTS, range } from "../../utils";
+import { DOTS } from "../../utils";
+import { range } from "./paginationHelper";
 import { PaginationHookProps } from "./types";
 
 export const usePagination = ({

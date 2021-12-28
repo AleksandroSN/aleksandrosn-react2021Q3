@@ -50,32 +50,15 @@ export const MainPage: FunctionComponent = (): JSX.Element => {
         />
         <Sort sortBy={sortBy} />
       </section>
-      <section className="App-main__pagination">
-        <div className="App-main__pagination__field-size">
-          <label htmlFor="pageSize">
-            Elements on page
-            <select
-              name="pageSize"
-              id="pageSize"
-              className="App-main__pagination__field-size--input"
-              onChange={(ev) => setPageSize(Number(ev.target.value))}
-              defaultValue={state.pageSize}
-            >
-              <option value="10">10</option>
-              <option value="20">20</option>
-              <option value="30">30</option>
-            </select>
-          </label>
-        </div>
-        <Pagination
-          totalCount={totalCountHelper()}
-          currentPage={state.page}
-          onPageChange={setPage}
-          pageSize={state.pageSize}
-          changePage={changePage}
-          setInfiniteScroll={setInfiniteScroll}
-        />
-      </section>
+      <Pagination
+        totalCount={totalCountHelper()}
+        currentPage={state.page}
+        onPageChange={setPage}
+        pageSize={state.pageSize}
+        changePage={changePage}
+        setInfiniteScroll={setInfiniteScroll}
+        setPageSize={setPageSize}
+      />
       <InfiniteScroll
         pageNumber={state.page}
         loadNewPage={changePage}

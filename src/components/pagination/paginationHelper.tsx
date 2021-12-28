@@ -1,27 +1,26 @@
+import {
+  PaginationItemWrapper,
+  PaginationItemWrapperButton,
+} from "./styled-pagination";
+import { PaginationItemProps } from "./types";
+import { DOTS } from "../../utils";
+
 export const activePage = (page: number, currentPage: number): string => {
   if (page === currentPage) {
-    return "pagination-item__button selected";
+    return "selected";
   }
-  return "pagination-item__button";
+  return "";
 };
 
 export const PaginationDots = (): JSX.Element => {
   return (
-    <li className="pagination-item">
-      <button type="button" className="pagination-item__button dots">
-        &#8230;
-      </button>
-    </li>
+    <PaginationItemWrapper>
+      <PaginationItemWrapperButton type="button" className="dots">
+        {DOTS}
+      </PaginationItemWrapperButton>
+    </PaginationItemWrapper>
   );
 };
-
-interface PaginationItemProps {
-  pageNumber: number;
-  currentPage: number;
-  onPageChange: (page: number) => void;
-  changePage: (page: number) => Promise<void>;
-  setInfiniteScroll: (flag: boolean) => void;
-}
 
 export const PaginationItem = ({
   pageNumber,
@@ -31,8 +30,8 @@ export const PaginationItem = ({
   setInfiniteScroll,
 }: PaginationItemProps): JSX.Element => {
   return (
-    <li className="pagination-item">
-      <button
+    <PaginationItemWrapper>
+      <PaginationItemWrapperButton
         className={activePage(pageNumber, currentPage)}
         onClick={() => {
           setInfiniteScroll(false);
@@ -42,8 +41,8 @@ export const PaginationItem = ({
         type="button"
       >
         {pageNumber}
-      </button>
-    </li>
+      </PaginationItemWrapperButton>
+    </PaginationItemWrapper>
   );
 };
 

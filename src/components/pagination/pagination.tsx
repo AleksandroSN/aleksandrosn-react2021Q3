@@ -1,8 +1,17 @@
 import { usePagination } from "./usePagination";
-import "./pagination.scss";
-import { PaginationDots, PaginationItem } from "../../utils/paginationHelper";
+// import "./pagination.scss";
+import { DOTS } from "../../utils";
 import { PaginationProps } from "./types";
-import { DOTS } from "../../utils/constants";
+import {
+  PaginationContainer,
+  PaginationFieldSize,
+  PaginationFieldSizeSelect,
+  PaginationItemWrapper,
+  PaginationItemWrapperButton,
+  PaginationList,
+  PaginationWrapper,
+} from "./styled-pagination";
+import { PaginationDots, PaginationItem } from "./paginationHelper";
 
 export const Pagination = ({
   totalCount,
@@ -12,6 +21,7 @@ export const Pagination = ({
   onPageChange,
   changePage,
   setInfiniteScroll,
+  setPageSize,
 }: PaginationProps): JSX.Element | null => {
   const paginationRange = usePagination({
     currentPage,
@@ -58,34 +68,51 @@ export const Pagination = ({
   });
 
   return (
-    <div className="App-main__pagination__wrapper">
-      <ul className="App-main__pagination__list">
-        <li className="pagination-item">
-          <button
-            type="button"
-            className="pagination-item__button arrow left"
-            disabled={currentPage === 1}
-            onClick={() => {
-              onPrevious();
-            }}
+    <PaginationWrapper>
+      <PaginationFieldSize>
+        <label htmlFor="pageSize">
+          Elements on page
+          <PaginationFieldSizeSelect
+            name="pageSize"
+            id="pageSize"
+            onChange={(ev) => setPageSize(Number(ev.target.value))}
+            defaultValue={pageSize}
           >
-            prev
-          </button>
-        </li>
-        {paginationItem}
-        <li className="pagination-item">
-          <button
-            type="button"
-            className="pagination-item__button arrow right"
-            disabled={currentPage === lastPage}
-            onClick={() => {
-              onNext();
-            }}
-          >
-            next
-          </button>
-        </li>
-      </ul>
-    </div>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+          </PaginationFieldSizeSelect>
+        </label>
+      </PaginationFieldSize>
+      <PaginationContainer>
+        <PaginationList>
+          <PaginationItemWrapper>
+            <PaginationItemWrapperButton
+              type="button"
+              className="arrow left"
+              disabled={currentPage === 1}
+              onClick={() => {
+                onPrevious();
+              }}
+            >
+              prev
+            </PaginationItemWrapperButton>
+          </PaginationItemWrapper>
+          {paginationItem}
+          <PaginationItemWrapper>
+            <PaginationItemWrapperButton
+              type="button"
+              className="arrow right"
+              disabled={currentPage === lastPage}
+              onClick={() => {
+                onNext();
+              }}
+            >
+              next
+            </PaginationItemWrapperButton>
+          </PaginationItemWrapper>
+        </PaginationList>
+      </PaginationContainer>
+    </PaginationWrapper>
   );
 };

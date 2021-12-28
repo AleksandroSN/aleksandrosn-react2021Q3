@@ -12,12 +12,6 @@ export { listRadioButtons } from "./listRadioB";
 export { listSelects } from "./listSelects";
 export type { PropsListSortButtons } from "./listSortButtons";
 export { listSortButtons } from "./listSortButtons";
-export {
-  PaginationDots,
-  PaginationItem,
-  activePage,
-  range,
-} from "./paginationHelper";
 export { randomStats } from "./randomStats";
 export { fullListSelects } from "./fullListSelects";
 export { validateField } from "./validateField";

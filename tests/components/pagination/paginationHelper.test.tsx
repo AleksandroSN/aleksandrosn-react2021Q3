@@ -5,7 +5,7 @@ import { Pagination } from "../../../src/components/pagination/pagination";
 import {
   activePage,
   PaginationItem,
-} from "../../../src/utils/paginationHelper";
+} from "../../../src/components/pagination/paginationHelper";
 
 describe("active page test", () => {
   it("active page equal number page", () => {
@@ -37,6 +37,7 @@ const testState = {
 };
 
 const setInfiniteScroll = jest.fn();
+const setPageSize = jest.fn();
 
 test("check render dots", () => {
   const { getAllByText } = render(
@@ -47,6 +48,7 @@ test("check render dots", () => {
       pageSize={testState.pageSize}
       changePage={testState.changePage}
       setInfiniteScroll={setInfiniteScroll}
+      setPageSize={setPageSize}
     />
   );
   const dots = getAllByText(/.../i);

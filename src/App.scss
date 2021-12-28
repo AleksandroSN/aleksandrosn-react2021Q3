@@ -29,43 +29,6 @@
         padding: 2rem 0.5rem 0 0;
       }
     }
-
-    &__pagination {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 50px;
-      justify-content: center;
-      align-items: center;
-
-      &__list {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 10px;
-
-        @media screen and (max-width: 768px){
-          gap: 5px;
-        }
-      }
-
-      &__field-size {
-        &--input {
-          margin-left: 1rem;
-          border-radius: 15px;
-          padding: 0px 12px;
-          height: 32px;
-          color: rgba(0, 0, 0, 0.87);
-          background-color: rgba(0, 0, 0, 0.08);
-          border-width: 0;
-          outline: none;
-          cursor: pointer;
-        }
-      }
-
-      @media screen and (max-width: 768px){
-        gap: 5px;
-      }
-    }
   }
 }
 
