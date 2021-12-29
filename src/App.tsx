@@ -1,8 +1,7 @@
-import "./App.scss";
 import { BrowserRouter as Router } from "react-router-dom";
-import { Header } from "./components/header/header";
+import { Header, Loader } from "./components";
 import { AnimatedSwitch } from "./routes/animeRoutes";
-import { Loader } from "./components/loader/loader";
+import { MainContainer } from "./style/styled-app";
 
 export const App = (): JSX.Element => {
   return (
@@ -10,9 +9,9 @@ export const App = (): JSX.Element => {
       <Loader />
       <Router>
         <Header />
-        <main className="App-main">
+        <MainContainer>
           <AnimatedSwitch />
-        </main>
+        </MainContainer>
       </Router>
     </>
   );

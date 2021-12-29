@@ -26,9 +26,9 @@ describe("test Search bar component", () => {
   it("Render component", () => {
     const { getByPlaceholderText } = render(
       <SearchBar
-        state={testState}
         searchPage={mockSearchFn}
         changePage={mockChangeFn}
+        pageNumber={testState.page}
       />
     );
     const searchInput = getByPlaceholderText(/Search/i);
@@ -37,7 +37,7 @@ describe("test Search bar component", () => {
   it("Submit with value", () => {
     const { getByPlaceholderText } = render(
       <SearchBar
-        state={testState}
+        pageNumber={testState.page}
         searchPage={mockSearchFn}
         changePage={mockChangeFn}
       />
@@ -50,7 +50,7 @@ describe("test Search bar component", () => {
   it("Submit without value", () => {
     const { getByPlaceholderText } = render(
       <SearchBar
-        state={testState}
+        pageNumber={testState.page}
         searchPage={mockSearchFn}
         changePage={mockChangeFn}
       />

@@ -1,13 +1,14 @@
 import { FunctionComponent, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { CardsContainer } from "../../components/cards-container/cards-container";
-import { Pagination } from "../../components/pagination/pagination";
-import { SearchBar } from "../../components/search-bar/searchBar";
-import { Sort } from "../../components/sorter/sort";
 import { LIMIT_PER_PAGE, OFFSET_PER_PAGE } from "../../utils/constants";
 import { MainPageReducerHelper } from "./controller/mainPageReducerHelper";
 import { getData } from "../../store/api/apiAsyncThunk";
-import { InfiniteScroll } from "../../components/infiniteScroll";
+import {
+  Filters,
+  CardsContainer,
+  Pagination,
+  InfiniteScroll,
+} from "../../components";
 
 export const MainPage: FunctionComponent = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -42,14 +43,12 @@ export const MainPage: FunctionComponent = (): JSX.Element => {
   //  }, [sorter, state.cards, state.sortParam, state.sortConfig])
   return (
     <>
-      <section className="App-main__filters">
-        <SearchBar
-          state={state}
-          changePage={changePage}
-          searchPage={searchPage}
-        />
-        <Sort sortBy={sortBy} />
-      </section>
+      <Filters
+        changePage={changePage}
+        pageNumber={state.page}
+        searchPage={searchPage}
+        sortBy={sortBy}
+      />
       <Pagination
         totalCount={totalCountHelper()}
         currentPage={state.page}

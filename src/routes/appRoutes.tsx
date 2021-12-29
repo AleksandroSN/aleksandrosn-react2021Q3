@@ -1,12 +1,13 @@
 import { Route } from "react-router-dom";
 import { listRoutes } from "./listRoutes";
+import { RouterWrapper } from "./styled-routes";
 
 export const RoutesList = listRoutes.map(({ path, Component }) => {
   return (
     <Route key={path} exact path={path}>
-      <div className="App-main__anime-page">
+      <RouterWrapper>
         <Component />
-      </div>
+      </RouterWrapper>
     </Route>
   );
 });

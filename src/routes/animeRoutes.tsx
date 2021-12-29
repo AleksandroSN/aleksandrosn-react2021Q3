@@ -1,15 +1,11 @@
 import { Switch, withRouter } from "react-router-dom";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { RoutesList } from "./appRoutes";
+import { StyledCSSTransition, StyledTransitionGroup } from "./styled-routes";
 
 export const AnimatedSwitch = withRouter(({ location }) => (
-  <TransitionGroup className="App-main__anime">
-    <CSSTransition
-      key={location.key}
-      classNames="App-main__anime-page"
-      timeout={300}
-    >
+  <StyledTransitionGroup>
+    <StyledCSSTransition key={location.key} timeout={300}>
       <Switch location={location}>{RoutesList}</Switch>
-    </CSSTransition>
-  </TransitionGroup>
+    </StyledCSSTransition>
+  </StyledTransitionGroup>
 ));

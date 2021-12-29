@@ -1,22 +1,16 @@
 import { FormEvent, RefObject, useRef } from "react";
-import { MainPageState } from "../../pages/main-page/controller/mainPageReducer";
 import {
   SearchBarBtnSbmt,
   SearchBarForm,
   SearchBarInput,
   SearchBarLabel,
 } from "./styled-search-bar";
-
-interface SearchBarProps {
-  changePage: (page: number) => Promise<void>;
-  searchPage: (searchElement: string) => Promise<void>;
-  state: MainPageState;
-}
+import { SearchBarProps } from "./types";
 
 export const SearchBar = ({
   changePage,
   searchPage,
-  state,
+  pageNumber,
 }: SearchBarProps): JSX.Element => {
   const searchRef: RefObject<HTMLInputElement> = useRef<HTMLInputElement>(null);
 
@@ -27,7 +21,7 @@ export const SearchBar = ({
     if (searchRef.current === null) return;
     const searchEl = searchRef.current.value.toLowerCase();
     if (searchEl === "") {
-      changePage(state.page);
+      changePage(pageNumber);
     } else {
       searchPage(searchEl);
     }
